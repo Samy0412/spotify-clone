@@ -1,0 +1,22 @@
+@import "./_base";
+
+.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: black;
+
+  img {
+    width: 100%;
+  }
+
+  a {
+    padding: 2rem;
+    border-radius: 9.9rem;
+    background-color: $green;
+    font-weight: 800;
+    color: white;
+    font-size: 1.6rem;
+    text-decoration: none;
+  }
+}
