@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import App from './components/App';
 // import * as serviceWorker from "../serviceWorker";
-import { DataLayer } from './DataLayer';
-import reducer, { initialState } from './reducer';
+import { DataLayer } from './components/DataLayer';
+import reducer, { initialState } from './components/reducer';
 
 
 ReactDOM.render(
