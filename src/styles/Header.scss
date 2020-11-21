@@ -1,0 +1,48 @@
+@import "./_base";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.header__left {
+  flex: 0.5;
+  background-color: white;
+  color: $grey1;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  min-width: 7rem;
+  max-width: 25rem;
+  height: 3rem;
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1.4rem;
+    padding-left: 0.5rem;
+  }
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+
+  .header__avatar {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  h4 {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: default;
+    }
+  }
+}
