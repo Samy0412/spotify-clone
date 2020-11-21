@@ -49,31 +49,35 @@ function Footer({spotify}) {
   };
 
   const skipNext = () => {
-    spotify.skipToNext();
-    spotify.getMyCurrentPlayingTrack().then((r) => {
-      dispatch({
-        type: "SET_ITEM",
-        item: r.item,
+    spotify.skipToNext().then(()=> {
+      spotify.getMyCurrentPlayingTrack().then((r) => {
+        dispatch({
+          type: "SET_ITEM",
+          item: r.item,
+        });
+        dispatch({
+          type: "SET_PLAYING",
+          playing: true,
+        });
       });
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
-    });
+    })
+    
   };
 
   const skipPrevious = () => {
-    spotify.skipToPrevious();
-    spotify.getMyCurrentPlayingTrack().then((r) => {
-      dispatch({
-        type: "SET_ITEM",
-        item: r.item,
+    spotify.skipToPrevious().then (()=> {
+      spotify.getMyCurrentPlayingTrack().then((r) => {
+        dispatch({
+          type: "SET_ITEM",
+          item: r.item,
+        });
+        dispatch({
+          type: "SET_PLAYING",
+          playing: true,
+        });
       });
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
-    });
+    })
+    
   };
 
   return (
@@ -94,14 +98,14 @@ function Footer({spotify}) {
      </div>
      <div className="footer__center">
       <ShuffleIcon className="footer__green icon"/>
-      <SkipPreviousIcon className="footer__icon icon" onClick={skipNext}/>
+      <SkipPreviousIcon className="footer__icon icon" onClick={skipPrevious}/>
       {playing? (
         <PauseCircleOutlineIcon className="footer__icon __play icon" onClick={handlePlayPause}/>
       ): (
         <PlayCircleOutlineIcon className="footer__icon __play icon" onClick={handlePlayPause}/>
       )}
     
-      <SkipNextIcon className="footer__icon icon" onClick={skipPrevious}/>
+      <SkipNextIcon className="footer__icon icon" onClick={skipNext}/>
       <RepeatIcon className="footer__green icon"/>
      </div>
      <div className="footer__right">
