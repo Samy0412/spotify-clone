@@ -1,7 +1,9 @@
+@import "./_base";
+
 .sidebaroption {
   display: flex;
   align-items: center;
-  color: grey;
+  color: $grey2;
   height: 4rem;
   cursor: pointer;
   transition: 200ms color ease-in;
@@ -9,14 +11,14 @@
     color: white;
   }
   h4 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin: 1rem 0 0 2rem;
   }
   .sidebaroption__icon {
     margin: 0 1rem;
-    font-size: 1.8rem;
+    font-size: 3rem;
   }
 }
