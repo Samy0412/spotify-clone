@@ -1,0 +1,9 @@
+@import "./_base";
+
+.body {
+  flex: 0.8;
+  height: 100vh;
+  background: linear-gradient($purple, black);
+  color: white;
+  padding: 3rem;
+}
