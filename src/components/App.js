@@ -5,12 +5,14 @@ import Login from './Login';
 import SpotifyWebApi from "spotify-web-api-js"
 import Player from "./Player";
 import { useDataLayerValue }  from './DataLayer'
+import axios from "axios"
+
 
 const spotify = new SpotifyWebApi()
 
 function App() {
 
-  const [{user, token }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
 
   //Run code based on a given condition
   useEffect(()=> {
@@ -27,13 +29,14 @@ function App() {
         token:_token,
       })
 
-      spotify.setAccessToken(_token)
-
+      spotify.setAccessToken(_token)       
+      
       spotify.getMe().then(user => {
         dispatch({
           type:'SET_USER',
           user: user,
         })
+       
       })
     }
      
@@ -44,7 +47,16 @@ function App() {
       })
     })
 
-  },[]);
+    spotify.getPlaylist('37i9dQZEVXcRreqHOjMk0H').then ((response)=> {
+      dispatch ({
+        type:'SET_DISCOVER_WEEKLY',
+        discover_weekly: response
+      })
+    })
+    
+ spotify.getMyDevices().then((response)=> console.log("devices:",response))
+  },[])
+
  
   return (
     <div className="app">
