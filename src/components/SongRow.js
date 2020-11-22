@@ -8,8 +8,9 @@ function SongRow({playSong}) {
 
   return (
     <div>
-    {discover_weekly?.tracks.items.map((item)=> (
+    {discover_weekly?.tracks.items.map((item,index)=> (
       <div className="songRow" onClick={()=> playSong(item.track.id)}>
+        <h3>{index+1}</h3>
       <img className="songRow__album" src={item.track.album.images[0].url} alt={item.track.album.name}/>
       <div className="songRow__info">
         <h1>{item.track.name}</h1>

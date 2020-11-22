@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/Footer.scss"
 import { useDataLayerValue } from './DataLayer'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
@@ -15,6 +15,7 @@ import { Slider} from "@material-ui/core"
 function Footer({spotify}) {
 
   const [{ token, item, playing }, dispatch] = useDataLayerValue();
+  const [value, setValue] = useState(30);
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
@@ -80,6 +81,11 @@ function Footer({spotify}) {
     
   };
 
+  const handleChange = (event, newValue)=> {
+    setValue(newValue);
+    spotify.setVolume(newValue);
+  }
+
   return (
     <div className="footer">
      <div className="footer__left">
@@ -111,7 +117,8 @@ function Footer({spotify}) {
      <div className="footer__right">
          <PlaylistPlayIcon className="footer__right__icon icon"/>
          <VolumeDownIcon className="footer__right__icon icon"/>
-         <Slider className="footer__right__icon"/>
+         <Slider className="footer__right__icon"
+         value={value} onChange={handleChange}/>
      </div>
     </div>
   )
