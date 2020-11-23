@@ -1,30 +1,48 @@
 .songRow {
   margin-left: 2rem;
-  padding: 2rem;
+  padding: 0.8rem 2rem 0.8rem 3rem;
   display: flex;
   align-items: center;
   z-index: 1000;
   color: white;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(165, 165, 165);
+  }
   &:hover {
     cursor: pointer;
-    background-color: black;
+    background-color: #303032;
     opacity: 0.8;
+    border-radius: 0.5rem;
+
+    p {
+      color: white;
+    }
   }
 }
 
 .songRow__info {
   margin-left: 2rem;
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    font-weight: 600;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    font-weight: 600;
     margin-top: 0.3rem;
-    color: gray;
+    color: rgb(165, 165, 165);
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }
 
-.songRow__album {
+.songRow__picture {
   height: 4rem;
   width: 4rem;
+  margin-left: 2rem;
 }

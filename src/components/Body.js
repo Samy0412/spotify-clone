@@ -72,17 +72,18 @@ function Body({spotify}) {
         </div>
       </div>
       <div className="body__songs">
-      <div className="body__icons">
+        <div className="body__icons">
         {!playing ? (
           <PlayCircleFilledIcon className="body__shuffle" onClick={playPlaylist}/>
         ): (
           <PauseCircleFilledIcon className="body__shuffle" onClick={playPlaylist}/>
         )}
-      <FavoriteIcon fontSize="large"/>
-      <MoreHorizIcon fontSize="large"/>
-      </div>
-        <SongRow playSong={playSong}/>
-  
+        <FavoriteIcon fontSize="large"/>
+        <MoreHorizIcon fontSize="large"/>
+        </div>
+        <div className="body__songslist">
+        <SongRow playSong={playSong} />
+        </div>
       </div>
     </div>
   )
