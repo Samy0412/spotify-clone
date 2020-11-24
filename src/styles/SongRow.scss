@@ -1,37 +1,95 @@
-.songRow {
-  margin-left: 2rem;
-  padding: 0.8rem 2rem 0.8rem 3rem;
-  display: flex;
-  align-items: center;
-  z-index: 1000;
-  color: white;
+table {
+  width: 95%;
+  margin: auto;
+  border-collapse: collapse;
+}
+th {
+  text-align: start;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgb(165, 165, 165);
+  padding-bottom: 1rem;
+  border-bottom: 0.01rem solid rgba(165, 165, 165, 0.2);
+}
 
+.empty__row {
+  height: 2rem;
+}
+
+.table__header :nth-child(1) {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.6rem;
+}
+
+.table__header :nth-child(3) {
+  width: 25%;
+}
+
+.table__header :nth-child(4) {
+  width: 20%;
+}
+
+.table__header :nth-child(5) {
+  width: 10%;
+}
+
+#clock__icon {
+  color: white !important;
+}
+.songRow {
+  z-index: 1000;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #303032;
+    p {
+      color: white;
+    }
+  }
+
+  &:focus {
+    background-color: rgb(105, 104, 104);
+    p {
+      color: white;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.numero {
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   h3 {
     font-size: 1.5rem;
     font-weight: 500;
     color: rgb(165, 165, 165);
   }
-  &:hover {
-    cursor: pointer;
-    background-color: #303032;
-    opacity: 0.8;
-    border-radius: 0.5rem;
-
-    p {
-      color: white;
-    }
-  }
+}
+.songRow__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 0;
 }
 
 .songRow__info {
   margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 1rem;
+
   h1 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 550;
   }
   p {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.35rem;
+    font-weight: 500;
     margin-top: 0.3rem;
     color: rgb(165, 165, 165);
     &:hover {
@@ -44,5 +102,37 @@
 .songRow__picture {
   height: 4rem;
   width: 4rem;
-  margin-left: 2rem;
+  // margin-left: 1rem;
+}
+
+.songRow__album {
+  p {
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-top: 0.3rem;
+    color: rgb(165, 165, 165);
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.songRow__added_at {
+  p {
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-top: 0.3rem;
+    color: rgb(165, 165, 165);
+  }
+}
+
+.songRow__duration {
+  border-radius: 0 0.5rem 0.5rem 0;
+  p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 0.3rem;
+    color: rgb(165, 165, 165);
+  }
 }

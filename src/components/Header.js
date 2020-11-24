@@ -16,7 +16,8 @@ function Header() {
        </input>
       </div>
       <div className="header__right">
-      <Avatar className ="header__avatar"src={user?.images[0].url} alt={user?.display_name}/>
+        {user?.images[0]? (<Avatar className ="header__avatar"src={user?.images[0].url} alt={user?.display_name}/>):((<Avatar className ="header__avatar"src="" alt={user?.display_name}/>))}
+      
       <h4>{user?.display_name}</h4>
       </div>
 

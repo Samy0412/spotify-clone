@@ -1,12 +1,13 @@
 @import "./_base";
 
 .body {
-  flex: 0.8;
+  flex: 0.85;
   height: 100vh;
   background: linear-gradient(#86759a, black);
   color: white;
   padding: 3rem;
   overflow-y: overlay;
+  padding-bottom: 7rem;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -60,6 +61,5 @@
 }
 
 .body__songslist {
-  // background-color: rgba(0, 0, 0, 0.55);
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.99));
 }
