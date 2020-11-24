@@ -29,6 +29,11 @@
 .header__right {
   display: flex;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0.2rem 2rem 0.2rem 0.2rem;
+  border-radius: 2rem;
+  position: fixed;
+  right: 4rem;
 
   .header__avatar {
     height: 3rem;
@@ -41,7 +46,6 @@
     font-weight: 500;
 
     &:hover {
-      text-decoration: underline;
       cursor: default;
     }
   }

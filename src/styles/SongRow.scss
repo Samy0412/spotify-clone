@@ -1,3 +1,5 @@
+@import "./_base";
+
 table {
   width: 95%;
   margin: auto;
@@ -34,9 +36,6 @@ th {
   width: 10%;
 }
 
-#clock__icon {
-  color: white !important;
-}
 .songRow {
   z-index: 1000;
 
@@ -47,15 +46,12 @@ th {
       color: white;
     }
   }
+}
 
-  &:focus {
-    background-color: rgb(105, 104, 104);
-    p {
-      color: white;
-    }
-    &:hover {
-      opacity: 1;
-    }
+.songRowSelected {
+  background-color: #5a5a5a;
+  p {
+    color: white !important;
   }
 }
 
@@ -67,6 +63,13 @@ th {
     font-size: 1.5rem;
     font-weight: 500;
     color: rgb(165, 165, 165);
+  }
+}
+
+.green {
+  h3,
+  h1 {
+    color: $green !important;
   }
 }
 .songRow__container {
@@ -135,4 +138,10 @@ th {
     margin-top: 0.3rem;
     color: rgb(165, 165, 165);
   }
+}
+
+.playArrow {
+  font-size: 2.3rem !important;
+  color: white;
+  margin-left: -0.8rem;
 }

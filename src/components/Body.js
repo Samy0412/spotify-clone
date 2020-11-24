@@ -14,13 +14,6 @@ function Body({spotify}) {
   const [{ discover_weekly, playing }, dispatch]=useDataLayerValue()
 
   const playPlaylist = () => {
-    if (playing) {
-      spotify.pause();
-      dispatch({
-        type: "SET_PLAYING",
-        playing: false,
-      });
-    }else {
       spotify
       .play({
         context_uri: `spotify:playlist:37i9dQZEVXcRreqHOjMk0H`,
@@ -36,9 +29,7 @@ function Body({spotify}) {
             playing: true,
           });
         });
-      });
-    }
-    
+      });  
   };
   const playSong = (id) => {
     spotify
@@ -59,6 +50,15 @@ function Body({spotify}) {
       });
   };
 
+  const pause = ()=>{
+    if (playing) {
+      spotify.pause();
+      dispatch({
+        type: "SET_PLAYING",
+        playing: false,
+      });}
+    }
+  
   return (
     <div className="body">
       <Header spotify={spotify}/>
@@ -76,17 +76,17 @@ function Body({spotify}) {
         {!playing ? (
           <PlayCircleFilledIcon className="body__shuffle" onClick={playPlaylist}/>
         ): (
-          <PauseCircleFilledIcon className="body__shuffle" onClick={playPlaylist}/>
+          <PauseCircleFilledIcon className="body__shuffle" onClick={pause}/>
         )}
         <FavoriteIcon fontSize="large"/>
         <MoreHorizIcon fontSize="large"/>
         </div>
         <div className="body__songslist">
-        <SongRow playSong={playSong} />
+        <SongRow playSong={playSong} pause={pause}/>
         </div>
       </div>
     </div>
   )
 }
 
-export default Body
+export default Body;

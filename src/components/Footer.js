@@ -50,7 +50,7 @@ function Footer({spotify}) {
   };
 
   const skipNext = () => {
-    spotify.skipToNext().then(()=> {
+    spotify.skipToNext().then((res)=> {
       spotify.getMyCurrentPlayingTrack().then((r) => {
         dispatch({
           type: "SET_ITEM",
@@ -66,7 +66,7 @@ function Footer({spotify}) {
   };
 
   const skipPrevious = () => {
-    spotify.skipToPrevious().then (()=> {
+    spotify.skipToPrevious().then ((res)=> {
       spotify.getMyCurrentPlayingTrack().then((r) => {
         dispatch({
           type: "SET_ITEM",
