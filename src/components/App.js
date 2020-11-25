@@ -5,14 +5,14 @@ import Login from './Login';
 import SpotifyWebApi from "spotify-web-api-js"
 import Player from "./Player";
 import { useDataLayerValue }  from './DataLayer'
-import axios from "axios"
+
 
 
 const spotify = new SpotifyWebApi()
 
 function App() {
 
-  const [{ token }, dispatch] = useDataLayerValue();
+  const [{ token, tracks }, dispatch] = useDataLayerValue();
 
   //Run code based on a given condition
   useEffect(()=> {
@@ -47,16 +47,16 @@ function App() {
       })
     })
 
-    spotify.getPlaylist('37i9dQZEVXcRreqHOjMk0H').then ((response)=> {
+    spotify.getPlaylist('37i9dQZF1DWUNIrSzKgQbP').then ((response)=> {
       dispatch ({
         type:'SET_DISCOVER_WEEKLY',
         discover_weekly: response
       })
     })
-    
+
  spotify.getMyDevices().then((response)=> console.log("devices:",response))
   },[])
-
+  
  
   return (
     <div className="app">

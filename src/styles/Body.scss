@@ -2,15 +2,11 @@
 
 .body {
   flex: 0.85;
-  height: 100vh;
+  height: 90vh;
   background: linear-gradient(#86759a, black);
   color: white;
   padding: 3rem;
   overflow-y: overlay;
-  padding-bottom: 7rem;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 .body__info {
@@ -18,7 +14,7 @@
   align-items: flex-end;
   padding: 1rem;
   img {
-    height: 20vw;
+    height: 20rem;
     margin: 0 2rem;
     box-shadow: 0 0.4rem 6rem rgba(0, 0, 0, 0.5);
   }
@@ -27,10 +23,13 @@
 .body__infoText {
   flex: 1;
   h2 {
-    font-size: 4.8rem;
+    font-size: 4.1vw;
     margin-bottom: 1rem;
   }
   p {
+    font-size: 1.4rem;
+  }
+  strong {
     font-size: 1.4rem;
   }
 }
@@ -57,9 +56,24 @@
 }
 
 .body__songs {
-  margin: 2rem -3rem;
+  margin: 2rem -3rem 0rem -3rem;
+  overflow-y: overlay;
 }
 
 .body__songslist {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.99));
+  overflow-y: overlay;
+}
+
+.fullheart {
+  color: $green;
+  font-size: 3.2rem !important;
+}
+
+.emptyheart {
+  font-size: 3.2rem !important;
+}
+
+.more {
+  font-size: 3.2rem !important;
 }

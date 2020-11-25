@@ -13,10 +13,10 @@ function SongRow({playSong, pause}) {
   const [play, setPlay]=useState(null)
   const [index, setIndex]=useState(null);
   const [selected, setSelected]= useState(null);
-  console.log("discover_weekly:",discover_weekly)
+  // console.log("discover_weekly:",discover_weekly)
 
   const onMouseOver = (index, id) => {
-    if (id === item.id && playing){
+    if (id === item?.id && playing){
       setPlay(<PauseIcon className="playArrow" onClick={()=> pause()}/>)
     }else {
       setPlay(<PlayArrowIcon className="playArrow" onClick={()=> playSong(id)}/>);
@@ -27,7 +27,6 @@ function SongRow({playSong, pause}) {
       setPlay((index+1));
   }
     
-
     return (
       <div>
        <table>
@@ -40,13 +39,12 @@ function SongRow({playSong, pause}) {
        </tr>
        <tr className="empty__row"></tr>
       {discover_weekly?.tracks.items.map((_item,_index)=> (
-        // <button className="songRow" onClick={()=> playSong(item.track.id)}>
         
           <tr className={selected === _index ? "songRowSelected" : "songRow"}   onMouseOver={()=>onMouseOver(_index,_item.track.id)} onMouseLeave={()=>onMouseLeave(_index)}> 
-        <td className={item.id === _item.track.id ? "numero green" : "numero"}><h3>{_index === index ? play : (_index+1)}</h3></td>
+        <td className={item?.id === _item.track.id ? "numero green" : "numero"}><h3>{_index === index ? play : (_index+1)}</h3></td>
         <td className="songRow__container" onClick={()=>setSelected(_index)}>
           <img className="songRow__picture" src={_item.track.album.images[0].url} alt={_item.track.album.name}/>
-          <div className={item.id === _item.track.id ? "songRow__info green" : "songRow__info"}>
+          <div className={item?.id === _item.track.id ? "songRow__info green" : "songRow__info"}>
           <h1>{_item.track.name}</h1>
           <p>
             {_item.track.artists.map(artist=> artist.name).join(",")} 
@@ -63,8 +61,6 @@ function SongRow({playSong, pause}) {
         <p>{(Math.floor((_item.track.duration_ms/1000)/60))}:{(Math.floor((_item.track.duration_ms/1000)%60))>=10 ? (Math.floor((_item.track.duration_ms/1000)%60)): `0${(Math.floor((_item.track.duration_ms/1000)%60))}`}</p>
         </td>
         </tr>
-       
-      // </button>
     
       ))}
        

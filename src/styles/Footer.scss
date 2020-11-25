@@ -6,10 +6,10 @@
   display: flex;
   justify-content: space-between;
   bottom: 0;
-  height: 6.5rem;
+  height: 3rem;
   width: 100%;
   background-color: $grey1;
-  padding: 5rem 2rem;
+  padding: 4.5rem 2rem;
   border-top: 0.1rem solid black;
 }
 
@@ -20,8 +20,8 @@
   width: 30rem;
 
   .footer__album__logo {
-    height: 6rem;
-    width: 6rem;
+    height: 5.5rem;
+    width: 5.5rem;
     margin-right: 2rem;
     object-fit: contain;
   }

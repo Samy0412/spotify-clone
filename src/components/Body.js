@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/Body.scss'
 import { useDataLayerValue } from './DataLayer'
 import Header from './Header'
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled"
 import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
 import FavoriteIcon from "@material-ui/icons/Favorite"
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz"
 import SongRow from './SongRow'
 
@@ -12,6 +13,19 @@ import SongRow from './SongRow'
 function Body({spotify}) {
 
   const [{ discover_weekly, playing }, dispatch]=useDataLayerValue()
+  const [selected,setSelected]= useState(false)
+
+  let totalDuration = 0;
+
+  discover_weekly?.tracks.items.map((item)=> (
+    totalDuration +=item.track.duration_ms
+  ))
+
+  const durationString =`${(Math.floor((totalDuration/1000)/60/60))} h ${(Math.floor((totalDuration/1000/60)%60))>=10 ? (Math.floor((totalDuration/1000/60)%60)): "0"+(Math.floor((totalDuration/1000/60)%60))} min`
+
+  const toggle = ()=> {
+    selected ? setSelected(false) : setSelected(true);
+  }
 
   const playPlaylist = () => {
       spotify
@@ -67,8 +81,10 @@ function Body({spotify}) {
         <img src={discover_weekly?.images[0].url} alt=""/>
         <div className="body__infoText">
           <strong>PLAYLIST</strong>
-          <h2>Discover Weekly</h2>
+          <h2>{discover_weekly?.name}</h2>
           <p>{discover_weekly?.description}</p>
+          <br></br>
+          <p><strong>{discover_weekly?.owner.display_name}</strong> . {discover_weekly?.followers.total} like{(discover_weekly?.followers.total)>1 ? "s" : ""} . {discover_weekly?.tracks.total} songs, {durationString}</p>
         </div>
       </div>
       <div className="body__songs">
@@ -78,8 +94,8 @@ function Body({spotify}) {
         ): (
           <PauseCircleFilledIcon className="body__shuffle" onClick={pause}/>
         )}
-        <FavoriteIcon fontSize="large"/>
-        <MoreHorizIcon fontSize="large"/>
+        {!selected ? (<FavoriteBorderIcon onClick={toggle} className="emptyheart"/>): (<FavoriteIcon onClick={toggle} className="fullheart"/>)}
+        <MoreHorizIcon className="more"/>
         </div>
         <div className="body__songslist">
         <SongRow playSong={playSong} pause={pause}/>

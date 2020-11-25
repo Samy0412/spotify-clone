@@ -4,7 +4,6 @@ export const initialState = {
   playing:false,
   item:null,
   discover_weekly:null,
-  top_artists:null,
   spotify:null,
 }
 
@@ -37,11 +36,6 @@ switch(action.type) {
       ...state,
       playlists: action.playlists
     }
-  case "SET_TOP_ARTISTS":
-    return {
-      ...state,
-      top_artists: action.top_artists,
-    };  
   case "SET_SPOTIFY":
     return {
       ...state,
