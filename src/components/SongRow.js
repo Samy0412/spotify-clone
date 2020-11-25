@@ -9,11 +9,11 @@ import PauseIcon from '@material-ui/icons/Pause';
 
 function SongRow({playSong, pause}) {
 
-  const [{ discover_weekly, item, playing }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, item, playing }, dispatch]=useDataLayerValue()
   const [play, setPlay]=useState(null)
   const [index, setIndex]=useState(null);
   const [selected, setSelected]= useState(null);
-  // console.log("discover_weekly:",discover_weekly)
+  console.log("selected_playlist:",selected_playlist)
 
   const onMouseOver = (index, id) => {
     if (id === item?.id && playing){
@@ -38,7 +38,7 @@ function SongRow({playSong, pause}) {
          <th>DURATION</th>
        </tr>
        <tr className="empty__row"></tr>
-      {discover_weekly?.tracks.items.map((_item,_index)=> (
+      {selected_playlist?.tracks.items.map((_item,_index)=> (
         
           <tr className={selected === _index ? "songRowSelected" : "songRow"}   onMouseOver={()=>onMouseOver(_index,_item.track.id)} onMouseLeave={()=>onMouseLeave(_index)}> 
         <td className={item?.id === _item.track.id ? "numero green" : "numero"}><h3>{_index === index ? play : (_index+1)}</h3></td>

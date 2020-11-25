@@ -1,9 +1,11 @@
 @import "./_base";
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   height: 90vh;
-  min-width: 23rem;
-  flex: 0.15;
+  // flex: 0.124;
+  width: 23rem;
   color: $grey2;
   background-color: black;
   padding: 0 1rem;
@@ -16,9 +18,8 @@
 }
 
 .sidebar__logo {
-  height: 8.5rem;
-  padding: 1rem;
-  margin-right: auto;
+  height: 4rem;
+  margin: 2rem 2rem 2rem 1rem;
 }
 
 .sidebar__title {
@@ -29,5 +30,6 @@
 
 .sidebar__playlists {
   overflow-y: scroll;
-  height: 60vh;
+  height: 60%;
+  margin-left: -0.7rem;
 }

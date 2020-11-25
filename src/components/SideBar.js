@@ -9,18 +9,21 @@ import { useDataLayerValue } from './DataLayer';
 
 function SideBar() {
   const [{playlists}, dispatch]= useDataLayerValue()
-  
+  console.log("playlists:",playlists)
+
   return (
     <div className="sidebar">
-      <img  className= "sidebar__logo" src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="spotify-logo"/>
+      <div className="menu">
+      <img  className= "sidebar__logo" src="/Spotify_Logo_RGB_White.png" alt="spotify-logo"/>
       <SideBarOption title="Home" Icon={HomeIcon}/>
       <SideBarOption title="Search" Icon={SearchIcon}/>
       <SideBarOption title="Your library" Icon={LibraryMusicIcon}/>
       <br/>
       <strong className="sidebar__title">PLAYLISTS</strong>
       <hr/>
+      </div>
       <div className="sidebar__playlists">
-      {playlists?.items.map((playlist) => (<SideBarOption title={playlist.name}/>)
+      {playlists?.items.map((playlist) => (<SideBarOption title={playlist.name} id={playlist.id}/>)
       )}
       </div>
     </div>

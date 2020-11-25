@@ -12,12 +12,12 @@ import SongRow from './SongRow'
 
 function Body({spotify}) {
 
-  const [{ discover_weekly, playing }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playlists, playing }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false)
 
   let totalDuration = 0;
 
-  discover_weekly?.tracks.items.map((item)=> (
+  selected_playlist?.tracks.items.map((item)=> (
     totalDuration +=item.track.duration_ms
   ))
 
@@ -30,7 +30,7 @@ function Body({spotify}) {
   const playPlaylist = () => {
       spotify
       .play({
-        context_uri: `spotify:playlist:37i9dQZEVXcRreqHOjMk0H`,
+        context_uri: `spotify:playlist:${selected_playlist.id}`,
       })
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
@@ -78,13 +78,13 @@ function Body({spotify}) {
       <Header spotify={spotify}/>
 
       <div className="body__info">
-        <img src={discover_weekly?.images[0].url} alt=""/>
+        <img src={selected_playlist?.images[0].url} alt=""/>
         <div className="body__infoText">
           <strong>PLAYLIST</strong>
-          <h2>{discover_weekly?.name}</h2>
-          <p>{discover_weekly?.description}</p>
+          <h2>{selected_playlist?.name}</h2>
+          <p>{selected_playlist?.description}</p>
           <br></br>
-          <p><strong>{discover_weekly?.owner.display_name}</strong> . {discover_weekly?.followers.total} like{(discover_weekly?.followers.total)>1 ? "s" : ""} . {discover_weekly?.tracks.total} songs, {durationString}</p>
+          <p><strong>{selected_playlist?.owner.display_name}</strong> . {selected_playlist?.followers.total} like{(selected_playlist?.followers.total)>1 ? "s" : ""} . {selected_playlist?.tracks.total} songs, {durationString}</p>
         </div>
       </div>
       <div className="body__songs">

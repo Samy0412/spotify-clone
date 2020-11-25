@@ -6,10 +6,10 @@
   display: flex;
   justify-content: space-between;
   bottom: 0;
-  height: 3rem;
+  // height: 3rem;
   width: 100%;
   background-color: $grey1;
-  padding: 4.5rem 2rem;
+  padding: 2rem 2rem;
   border-top: 0.1rem solid black;
 }
 
@@ -17,7 +17,7 @@
   flex: 0.3;
   display: flex;
   align-items: center;
-  width: 30rem;
+  max-width: 30rem;
 
   .footer__album__logo {
     height: 5.5rem;
@@ -70,6 +70,9 @@
   }
   .footer__green {
     color: $green;
+  }
+  .footer__white {
+    color: white;
   }
 
   .__play {

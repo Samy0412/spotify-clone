@@ -1,7 +1,7 @@
 @import "./_base";
 
 .body {
-  flex: 0.85;
+  flex: 1;
   height: 90vh;
   background: linear-gradient(#86759a, black);
   color: white;
@@ -12,10 +12,10 @@
 .body__info {
   display: flex;
   align-items: flex-end;
-  padding: 1rem;
+  // padding: 1rem;
   img {
-    height: 20rem;
-    margin: 0 2rem;
+    height: 23rem;
+    margin-right: 3rem;
     box-shadow: 0 0.4rem 6rem rgba(0, 0, 0, 0.5);
   }
 }
@@ -38,6 +38,7 @@
   display: flex;
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+  margin-left: -2rem;
   // background-color: rgba(0, 0, 0, 0.4);
 
   .MuiSvgIcon-root {

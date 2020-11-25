@@ -1,9 +1,13 @@
 @import "./_base";
 
 .login {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
+  // position: fixed;
+  // bottom: 0;
   background-color: black;
 
   img {

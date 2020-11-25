@@ -12,7 +12,7 @@ const spotify = new SpotifyWebApi()
 
 function App() {
 
-  const [{ token, tracks }, dispatch] = useDataLayerValue();
+  const [{ token, tracks, playlists }, dispatch] = useDataLayerValue();
 
   //Run code based on a given condition
   useEffect(()=> {
@@ -45,19 +45,19 @@ function App() {
         type:'SET_PLAYLISTS',
         playlists: playlists,
       })
-    })
 
-    spotify.getPlaylist('37i9dQZF1DWUNIrSzKgQbP').then ((response)=> {
-      dispatch ({
-        type:'SET_DISCOVER_WEEKLY',
-        discover_weekly: response
+      spotify.getPlaylist(playlists.items[0].id).then ((response)=> {
+        dispatch ({
+          type:'SET_SELECTED_PLAYLIST',
+          selected_playlist: response
+        })
       })
     })
 
  spotify.getMyDevices().then((response)=> console.log("devices:",response))
   },[])
   
- 
+
   return (
     <div className="app">
       {
