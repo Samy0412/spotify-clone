@@ -10,6 +10,7 @@ import RepeatIcon from "@material-ui/icons/Repeat"
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay"
 import VolumeDownIcon from "@material-ui/icons/VolumeDown"
 import { Slider} from "@material-ui/core"
+import ProgressBar from './ProgressBar';
 
 
 function Footer({spotify}) {
@@ -117,6 +118,7 @@ function Footer({spotify}) {
          )}
      </div>
      <div className="footer__center">
+       <ProgressBar/>
       <ShuffleIcon className="footer__green icon"/>
       <SkipPreviousIcon className="footer__icon icon" onClick={skipPrevious}/>
       {playing? (
