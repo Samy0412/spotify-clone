@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/Body.scss'
 import { useDataLayerValue } from './DataLayer'
 import Header from './Header'
@@ -27,13 +27,28 @@ function Body({spotify}) {
     selected ? setSelected(false) : setSelected(true);
   }
 
+
+  useEffect(() => {
+    spotify.getMyCurrentPlaybackState().then((r) => {
+      dispatch({
+        type: "SET_PLAYING",
+        playing: r.is_playing,
+      });
+
+      dispatch({
+        type: "SET_ITEM",
+        item: r.item,
+      });
+    });
+  }, [spotify]);
+
   const playPlaylist = () => {
       spotify
       .play({
         context_uri: `spotify:playlist:${selected_playlist.id}`,
       })
       .then((res) => {
-        spotify.getMyCurrentPlayingTrack().then((r) => {
+        spotify.getMyCurrentPlaybackState().then((r) => {
           dispatch({
             type: "SET_ITEM",
             item: r.item,
@@ -45,6 +60,7 @@ function Body({spotify}) {
         });
       });  
   };
+
   const playSong = (id) => {
     spotify
       .play({
@@ -53,8 +69,8 @@ function Body({spotify}) {
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
           dispatch({
-            type: "SET_CURRENT_TRACK",
-            currentTrack: r,
+            type: "SET_ITEM",
+            item: r.item,
           });
           dispatch({
             type: "SET_PLAYING",
@@ -98,7 +114,7 @@ function Body({spotify}) {
         <MoreHorizIcon className="more"/>
         </div>
         <div className="body__songslist">
-        <SongRow playSong={playSong} pause={pause}/>
+        <SongRow playSong={playSong} pause={pause} spotify={spotify}/>
         </div>
       </div>
     </div>

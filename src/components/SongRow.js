@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../styles/SongRow.scss'
 import { useDataLayerValue } from './DataLayer'
 import moment from "moment";
@@ -7,13 +7,15 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 
 
-function SongRow({playSong, pause}) {
+function SongRow({playSong, pause, spotify }) {
 
-  const [{ selected_playlist, item, playing }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playing, item }, dispatch]=useDataLayerValue()
   const [play, setPlay]=useState(null)
   const [index, setIndex]=useState(null);
   const [selected, setSelected]= useState(null);
-  console.log("selected_playlist:",selected_playlist)
+
+  // console.log("item:",item?.id)
+
 
   const onMouseOver = (index, id) => {
     if (id === item?.id && playing){

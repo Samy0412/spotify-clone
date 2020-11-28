@@ -18,7 +18,7 @@ function App() {
   useEffect(()=> {
     const hash = getTokenFromUrl();
     window.location.hash ="";
-    console.log('I HAVE A TOKEN>>>>',hash)
+    // console.log('I HAVE A TOKEN>>>>',hash)
 
     const _token = hash.access_token;
 
@@ -55,7 +55,8 @@ function App() {
       })
     })
 
- spotify.getMyDevices().then((response)=> console.log("devices:",response))
+//  spotify.getMyDevices().then((response)=> console.log("devices:",response))
+
   },[])
   
 

@@ -21,7 +21,7 @@ function Footer({spotify}) {
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
-      console.log(r);
+      console.log("currentplaybackstate:",r);
 
       dispatch({
         type: "SET_PLAYING",
@@ -130,7 +130,8 @@ function Footer({spotify}) {
       <SkipNextIcon className="footer__icon icon" onClick={skipNext}/>
       <RepeatIcon className={repeat ? "footer__green icon" : "footer__white icon"} onClick={repeatTrack}/>
       </div>
-      <ProgressBar spotify={spotify}/>
+      {/* <ProgressBar spotify={spotify}/> */}
+      Is am the progress bar
      </div>
      <div className="footer__right">
          <PlaylistPlayIcon className="footer__right__icon icon"/>
