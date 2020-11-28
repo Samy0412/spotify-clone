@@ -53,8 +53,8 @@ function Body({spotify}) {
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
           dispatch({
-            type: "SET_ITEM",
-            item: r.item,
+            type: "SET_CURRENT_TRACK",
+            currentTrack: r,
           });
           dispatch({
             type: "SET_PLAYING",

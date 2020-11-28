@@ -118,7 +118,7 @@ function Footer({spotify}) {
          )}
      </div>
      <div className="footer__center">
-       <ProgressBar/>
+       <div className="footer__commands">
       <ShuffleIcon className="footer__green icon"/>
       <SkipPreviousIcon className="footer__icon icon" onClick={skipPrevious}/>
       {playing? (
@@ -129,6 +129,8 @@ function Footer({spotify}) {
     
       <SkipNextIcon className="footer__icon icon" onClick={skipNext}/>
       <RepeatIcon className={repeat ? "footer__green icon" : "footer__white icon"} onClick={repeatTrack}/>
+      </div>
+      <ProgressBar spotify={spotify}/>
      </div>
      <div className="footer__right">
          <PlaylistPlayIcon className="footer__right__icon icon"/>

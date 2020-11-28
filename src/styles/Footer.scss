@@ -49,6 +49,11 @@
 }
 
 .footer__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer__commands {
   flex: 0.4;
   padding: 0 1rem;
   display: flex;

@@ -2,7 +2,7 @@ export const initialState = {
   user:null,
   playlists:null,
   playing:false,
-  item:null,
+  currentTrack:null,
   selected_playlist: null,
   spotify:null,
 }
