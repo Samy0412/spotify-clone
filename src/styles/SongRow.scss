@@ -19,11 +19,13 @@ th {
 }
 
 .table__header :nth-child(1) {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 3.5rem;
   font-size: 1.6rem;
+  margin-left: -2rem;
 }
 
+.table__header :nth-child(2) {
+}
 .table__header :nth-child(3) {
   width: 25%;
 }
@@ -57,8 +59,7 @@ th {
 
 .numero {
   border-radius: 0.5rem 0 0 0.5rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 3.5rem;
   h3 {
     font-size: 1.5rem;
     font-weight: 500;
@@ -143,5 +144,5 @@ th {
 .playArrow {
   font-size: 2.3rem !important;
   color: white;
-  margin-left: -0.8rem;
+  margin-left: -0.6rem;
 }
