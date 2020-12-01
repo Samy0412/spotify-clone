@@ -4,6 +4,7 @@ export const initialState = {
   playing:false,
   currentTrack:null,
   selected_playlist: null,
+  repeat:false,
   spotify:null,
 }
 
@@ -45,7 +46,12 @@ switch(action.type) {
     return {
       ...state,
       selected_playlist: action.selected_playlist
-    }   
+    } 
+    case 'SET_REPEAT':
+    return {
+      ...state,
+      repeat: action.repeat
+    }  
    default: 
    return state; 
 }

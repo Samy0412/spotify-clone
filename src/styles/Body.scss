@@ -12,7 +12,7 @@
 .body__info {
   display: flex;
   align-items: flex-end;
-  // padding: 1rem;
+
   img {
     height: 23rem;
     margin-right: 3rem;
@@ -39,7 +39,6 @@
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
   margin-left: -2rem;
-  // background-color: rgba(0, 0, 0, 0.4);
 
   .MuiSvgIcon-root {
     margin-right: 2rem;
@@ -58,13 +57,13 @@
 
 .body__songs {
   margin: 2rem -3rem 0rem -3rem;
-  border: solid 1px red;
-  overflow-y: overlay;
+  overflow-y: hidden;
 }
 
 .body__songslist {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.99));
-  overflow-y: overlay;
+  overflow: hidden;
+  padding-right: 2rem;
 }
 
 .fullheart {

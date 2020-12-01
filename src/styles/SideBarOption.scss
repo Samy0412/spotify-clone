@@ -7,6 +7,7 @@
   height: 4rem;
   cursor: pointer;
   transition: 200ms color ease-in;
+  position: relative;
   &:hover {
     color: white;
   }
@@ -25,4 +26,22 @@
 
 .white {
   color: white;
+}
+
+.playlist-name {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.invisible {
+  display: none !important;
+}
+.visible {
+  background-color: black;
+  height: 2rem !important;
+  width: 2rem !important;
+  // border: 1px solid red;
+  position: absolute;
+  right: 1rem;
 }

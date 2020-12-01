@@ -15,13 +15,11 @@ import ProgressBar from './ProgressBar';
 
 function Footer({spotify}) {
 
-  const [{ token, item, playing }, dispatch] = useDataLayerValue();
+  const [{ token, item, playing, repeat }, dispatch] = useDataLayerValue();
   const [value, setValue] = useState(30);
-  const [repeat,setRepeat]= useState(false);
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
-      console.log("currentplaybackstate:",r);
 
       dispatch({
         type: "SET_PLAYING",
@@ -86,12 +84,18 @@ function Footer({spotify}) {
   const repeatTrack = ()=> {
     if(repeat){
       spotify.setRepeat("off").then( ()=> {
-        setRepeat(false);
+        dispatch({
+          type: "SET_REPEAT",
+          repeat: false,
+        });
       }
       )
     }else {
       spotify.setRepeat("track").then(()=> {
-        setRepeat(true);
+        dispatch({
+          type: "SET_REPEAT",
+          repeat: true,
+        });
       })
     } 
   }
@@ -130,8 +134,7 @@ function Footer({spotify}) {
       <SkipNextIcon className="footer__icon icon" onClick={skipNext}/>
       <RepeatIcon className={repeat ? "footer__green icon" : "footer__white icon"} onClick={repeatTrack}/>
       </div>
-      {/* <ProgressBar spotify={spotify}/> */}
-      Is am the progress bar
+      <ProgressBar spotify={spotify}/>
      </div>
      <div className="footer__right">
          <PlaylistPlayIcon className="footer__right__icon icon"/>

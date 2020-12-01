@@ -2,7 +2,7 @@
   width: 0.8rem; /* width of the entire scrollbar */
 }
 *::-webkit-scrollbar-track {
-  background: none; /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 *::-webkit-scrollbar-thumb {
   background-color: rgba(

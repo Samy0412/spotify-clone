@@ -55,7 +55,7 @@ function App() {
       })
     })
 
-//  spotify.getMyDevices().then((response)=> console.log("devices:",response))
+ spotify.getMyDevices().then((response)=> console.log("devices:",response))
 
   },[])
   
