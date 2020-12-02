@@ -45,7 +45,8 @@ function App() {
       })
     }
       //get the user Playlists
-    spotify.getUserPlaylists().then((playlists)=> {
+    spotify.getUserPlaylists({limit:35}).then((playlists)=> {
+      console.log("playlists:",playlists)
       dispatch({
         type:'SET_PLAYLISTS',
         playlists: playlists,

@@ -22,7 +22,7 @@ import ProgressBar from './ProgressBar';
 function Footer({spotify}) {
 
   const [{ token, item, playing, repeat }, dispatch] = useDataLayerValue();
-  const [value, setValue] = useState(30);
+  const [value, setValue] = useState(50);
   const [shuffle, setShuffle]=useState(false)
 
   useEffect(() => {
