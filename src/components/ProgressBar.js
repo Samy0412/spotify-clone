@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useDataLayerValue }  from './DataLayer'
 import styled from "styled-components"
-import "../styles/ProgressBar.scss"
+import "../styles/Footer.scss"
+
 
 const ProgressBarContainer = styled.div `
 display: flex;
@@ -111,11 +112,11 @@ function ProgressBar({spotify}) {
 
   return (
     <ProgressBarContainer>
-      <p>{(Math.floor((progress/1000)/60))}:{(Math.floor((progress/1000)%60))>=10 ? (Math.floor((progress/1000)%60)): `0${(Math.floor((progress/1000)%60))}`}</p>
+      <p className="time">{(Math.floor((progress/1000)/60))}:{(Math.floor((progress/1000)%60))>=10 ? (Math.floor((progress/1000)%60)): `0${(Math.floor((progress/1000)%60))}`}</p>
       <Track>
         <Thumb percentage={__percentage}></Thumb>
       </Track>
-      <p>{(Math.floor((item?.duration_ms/1000)/60))}:{(Math.floor((item?.duration_ms/1000)%60))>=10 ? (Math.floor((item?.duration_ms/1000)%60)): `0${(Math.floor((item?.duration_ms/1000)%60))}`}</p>
+      <p className="time">{(Math.floor((item?.duration_ms/1000)/60))}:{(Math.floor((item?.duration_ms/1000)%60))>=10 ? (Math.floor((item?.duration_ms/1000)%60)): `0${(Math.floor((item?.duration_ms/1000)%60))}`}</p>
     </ProgressBarContainer>
   )
 }
