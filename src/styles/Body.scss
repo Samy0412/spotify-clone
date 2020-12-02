@@ -112,6 +112,107 @@
   z-index: 600;
 }
 
-.invisible {
-  display: none;
+.songs_header {
+  width: 91%;
+  position: fixed;
+  top: 6rem;
+  background-color: #302a37;
+  z-index: 500;
+
+  table {
+    width: 94.8%;
+    margin-left: 4rem;
+    border-collapse: collapse;
+    background-color: #302a37;
+
+    th {
+      text-align: start;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: rgb(165, 165, 165);
+      padding-bottom: 1rem;
+      border-bottom: 0.01rem solid rgba(165, 165, 165, 0.2);
+    }
+
+    .table__header :nth-child(1) {
+      padding-left: 2rem;
+      font-size: 1.6rem;
+      width: 5rem;
+    }
+
+    .table__header :nth-child(2) {
+    }
+    .table__header :nth-child(3) {
+      width: 25%;
+    }
+
+    .table__header :nth-child(4) {
+      width: 20%;
+    }
+
+    .table__header :nth-child(5) {
+      width: 10%;
+    }
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+  .songs_header {
+    width: 88%;
+    table {
+      margin-left: 4rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 1800px) {
+  .songs_header {
+    width: 86%;
+    table {
+      margin-left: 3.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .songs_header {
+    width: 85%;
+    table {
+      margin-left: 3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .songs_header {
+    width: 84%;
+    table {
+      margin-left: 2.5rem;
+    }
+  }
+}
+@media only screen and (max-width: 1370px) {
+  .songs_header {
+    width: 83%;
+    table {
+      margin-left: 2.5rem;
+    }
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .songs_header {
+    width: 75%;
+    table {
+      margin-left: 2rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .songs_header {
+    width: 72%;
+    table {
+      margin-left: 1rem;
+    }
+  }
 }

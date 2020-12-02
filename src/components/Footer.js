@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import "../styles/Footer.scss"
 import { useDataLayerValue } from './DataLayer'
+
+//style sheet
+import "../styles/Footer.scss"
+
+//material UI Icons and components
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious"
@@ -10,6 +14,8 @@ import RepeatIcon from "@material-ui/icons/Repeat"
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay"
 import VolumeDownIcon from "@material-ui/icons/VolumeDown"
 import { Slider} from "@material-ui/core"
+
+//core components
 import ProgressBar from './ProgressBar';
 
 
@@ -17,6 +23,7 @@ function Footer({spotify}) {
 
   const [{ token, item, playing, repeat }, dispatch] = useDataLayerValue();
   const [value, setValue] = useState(30);
+  const [shuffle, setShuffle]=useState(false)
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
@@ -33,6 +40,7 @@ function Footer({spotify}) {
     });
   }, [spotify]);
 
+  //call to Spotify API to pause the song
   const handlePlayPause = () => {
     if (playing) {
       spotify.pause();
@@ -48,7 +56,8 @@ function Footer({spotify}) {
       });
     }
   };
-
+  
+  //call to Spotify API to skip to the next song
   const skipNext = () => {
     spotify.skipToNext().then((res)=> {
       spotify.getMyCurrentPlayingTrack().then((r) => {
@@ -62,9 +71,9 @@ function Footer({spotify}) {
         });
       });
     })
-    
   };
 
+  //call to Spotify API to skip to the previous song
   const skipPrevious = () => {
     spotify.skipToPrevious().then ((res)=> {
       spotify.getMyCurrentPlayingTrack().then((r) => {
@@ -78,9 +87,9 @@ function Footer({spotify}) {
         });
       });
     })
-    
   };
 
+ //call to Spotify API to skip to repeat the track currently played
   const repeatTrack = ()=> {
     if(repeat){
       spotify.setRepeat("off").then( ()=> {
@@ -100,6 +109,20 @@ function Footer({spotify}) {
     } 
   }
 
+  //call to spotify APi to shuffle
+  const shufflePlaylist = ()=> {
+    if(shuffle){
+      spotify.setShuffle(false).then(()=>{
+        setShuffle(false);
+      })
+    }else {
+      spotify.setShuffle(true).then( ()=> {
+        setShuffle(true);
+      });
+    }  
+  }
+
+  //Call to spotify API to change the volume 
   const handleChange = (event, newValue)=> {
     setValue(newValue);
     spotify.setVolume(newValue);
@@ -123,7 +146,7 @@ function Footer({spotify}) {
      </div>
      <div className="footer__center">
        <div className="footer__commands">
-      <ShuffleIcon className="footer__green icon"/>
+      <ShuffleIcon className={shuffle ? "footer__green icon" : "footer_white icon"} onClick={shufflePlaylist}/>
       <SkipPreviousIcon className="footer__icon icon" onClick={skipPrevious}/>
       {playing? (
         <PauseCircleOutlineIcon className="footer__icon __play icon" onClick={handlePlayPause}/>

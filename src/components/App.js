@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
-import { getTokenFromUrl } from "./spotify";
-import '../styles/App.scss';
-import Login from './Login';
 import SpotifyWebApi from "spotify-web-api-js"
-import Player from "./Player";
 import { useDataLayerValue }  from './DataLayer'
 
+//helper function
+import { getTokenFromUrl } from "./spotify";
+
+//style sheet
+import '../styles/App.scss';
+//Core components
+import Login from './Login';
+import Player from "./Player";
 
 
 const spotify = new SpotifyWebApi()
@@ -14,8 +18,10 @@ function App() {
 
   const [{ token, tracks, playlists }, dispatch] = useDataLayerValue();
 
-  //Run code based on a given condition
+  //Run code at first render
   useEffect(()=> {
+
+    //Get the access Token and store it
     const hash = getTokenFromUrl();
     window.location.hash ="";
     // console.log('I HAVE A TOKEN>>>>',hash)
@@ -23,7 +29,6 @@ function App() {
     const _token = hash.access_token;
 
     if(_token){
- 
       dispatch({
         type:'SET_TOKEN',
         token:_token,
@@ -31,22 +36,22 @@ function App() {
 
       spotify.setAccessToken(_token)       
       
+      //get the user information
       spotify.getMe().then(user => {
         dispatch({
           type:'SET_USER',
           user: user,
         })
-        console.log("user:",user)
-       
       })
     }
-     
+      //get the user Playlists
     spotify.getUserPlaylists().then((playlists)=> {
       dispatch({
         type:'SET_PLAYLISTS',
         playlists: playlists,
       })
-
+      
+      //get the first playlist to display when opening the app
       spotify.getPlaylist(playlists.items[0].id).then ((response)=> {
         dispatch ({
           type:'SET_SELECTED_PLAYLIST',
@@ -55,7 +60,7 @@ function App() {
       })
     })
 
- spotify.getMyDevices().then((response)=> console.log("devices:",response))
+//  spotify.getMyDevices().then((response)=> console.log("devices:",response))
 
   },[])
   

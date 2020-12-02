@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useDataLayerValue }  from './DataLayer'
 import styled from "styled-components"
+
+//Style sheet
 import "../styles/Footer.scss"
 
 
@@ -35,32 +37,39 @@ function ProgressBar({spotify}) {
   const [interv, setInterv]=useState();
 
   let __progress=currentTrack?.progress_ms;
-
+  
+  //Calculate the pourcentage of the song already played
   let __percentage = (progress/item?.duration_ms)*100;
 
+ //calculate remaining time
+  const calculateRemainingTime = ()=> {
+    __progress +=1000;
+    setProgress(__progress)
+  }   
+ //Set interval to calculate remaining time every second 
+const start = ()=> {
+ calculateRemainingTime();
+ setInterv(setInterval(calculateRemainingTime,1000))
+}
+//Clear the interval
+const stop = ()=> {
+  clearInterval(interv);
+}
 
+ //get the current playback state with current progress, when opening the app
   useEffect(()=> {
     spotify.getMyCurrentPlaybackState().then((r) => {
       setCurrentTrack(r);
-      console.log(currentTrack)
       setProgress(r.progress_ms)
-      setId(r.item?.id);  
-  });
-    
+      setId(r.item?.id); 
+      dispatch({
+        type: "SET_ITEM",
+        item: r.item,
+      }) 
+  });  
   },[])
 
-  const calculateRemainingTime = ()=> {
-      __progress +=1000;
-      setProgress(__progress)
-    }   
- const start = ()=> {
-   calculateRemainingTime();
-   setInterv(setInterval(calculateRemainingTime,1000))
- }
- const stop = ()=> {
-    clearInterval(interv);
- }
-
+  //handle the progress of the song when pausing or playing
   useEffect(() => {
     spotify.getMyCurrentPlayingTrack().then((r) => {
       setCurrentTrack(r);
@@ -73,7 +82,7 @@ function ProgressBar({spotify}) {
     
 }, [playing]); 
 
-  
+  //handle the pogress of the song when changing song
   useEffect(() => {
     spotify.getMyCurrentPlayingTrack().then((r) => {
       setCurrentTrack(r);
@@ -81,6 +90,10 @@ function ProgressBar({spotify}) {
       __progress = r.progress_ms;
       if(r.item?.id != id){
         setId(r.item?.id);
+        dispatch({
+          type: "SET_ITEM",
+          item: r.item,
+        })
         if(playing){
           stop();
           start();
@@ -88,6 +101,7 @@ function ProgressBar({spotify}) {
     }});  
   }, [item]);
 
+  //Change the elapsed time dynamically
   useEffect(()=> {
     if(progress >= item?.duration_ms){
       if(repeat){
@@ -98,15 +112,24 @@ function ProgressBar({spotify}) {
         stop();
         setProgress(0);
         __progress=0;
-        if(item?.type === "track"){
-        dispatch({
-          type: "SET_PLAYING",
-          playing: false,
-        })
-        }  
+        setTimeout(() => {
+          spotify.getMyCurrentPlaybackState().then((r) => {
+           if(!r.context){
+            dispatch({
+              type: "SET_PLAYING",
+              playing: false,
+            })
+           }else {
+            setCurrentTrack(r);
+            dispatch({
+              type: "SET_ITEM",
+              item: r.item,
+            })
+           }
+        });  
+        }, 2000);  
       }  
     }
-    
   },[progress])
 
 

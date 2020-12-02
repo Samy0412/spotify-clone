@@ -1,24 +1,27 @@
 import React, {useEffect, useState} from 'react'
-import "../styles/SideBarOption.scss"
-import SpotifyWebApi from "spotify-web-api-js"
 import { useDataLayerValue }  from './DataLayer'
+
+//style sheet
+import "../styles/SideBarOption.scss"
+
+//Material UI Icons
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 
-const spotify = new SpotifyWebApi()
 
-function SideBarOption({title, Icon, id}) {
+function SideBarOption({title, Icon, id, spotify}) {
 
   const [{selected_playlist, playing}, dispatch]= useDataLayerValue()
   const [currentPlaylist, setCurrentPlaylist]=useState(null)
 
-
+  //get the current playing playlist id
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
       setCurrentPlaylist(r.context?.uri.slice(17));
     });
   }, [selected_playlist,playing]);
   
+  //find the playlist
   const setPlaylist = (id) => {
    
     spotify.getPlaylist(id).then ((response)=> {

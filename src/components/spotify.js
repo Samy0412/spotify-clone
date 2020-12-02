@@ -17,6 +17,7 @@ const scopes = [
   "playlist-read-collaborative",
 ];
 
+//Extract token from hash
 export const getTokenFromUrl =()=> {
   return window.location.hash
   .substring(1)
