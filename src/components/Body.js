@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 //hooks for the scrolling animation
 import {useIntersection} from "react-use";
 import gsap from "gsap";
+import {usePalette} from 'react-palette';
 
 import { useDataLayerValue } from './DataLayer';
 
@@ -24,6 +25,9 @@ function Body({spotify}) {
   const [{ selected_playlist, playing }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
   const [visible,setVisible]=useState(true)
+  
+  //Data for react-palette
+  const {data,loading,error} = usePalette (selected_playlist?.images[0].url)
 
 //Logic for the animation of the play/pause control when scrolling
   const sectionRef = useRef(null);
@@ -123,10 +127,11 @@ function Body({spotify}) {
         playing: false,
       });}
     }
+
   
   return (
-  
-    <div className="body" >
+
+    <div className="body" style={{background:`linear-gradient(${data.lightVibrant}, rgba(0,0,0))`}}>
       <Header spotify={spotify}/>
       
       <div className="sticky fadeIn">
@@ -137,6 +142,7 @@ function Body({spotify}) {
         )}
         <h2 className="fadeIn" id="playlist-title">{selected_playlist?.name}</h2>
       </div>
+      <div className="layer fadeIn"  style={{backgroundColor:data.lightVibrant}}></div>
        
       <div className="body__info">
         <img className="image" src={selected_playlist?.images[0].url} alt=""/>
@@ -171,9 +177,11 @@ function Body({spotify}) {
        </tr>
        </table>
       </div>
+      <div className="layer2 fadeIn"  style={{backgroundColor:data.lightVibrant}}></div>
         </div>
       </div>
     </div>
+
   )
 }
 

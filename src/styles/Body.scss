@@ -3,7 +3,7 @@
 .body {
   flex: 1;
   height: 90vh;
-  background: linear-gradient(#86759a, black);
+  // background: linear-gradient(#86759a, black);
   color: white;
   padding: 1.5rem 3rem 3rem 3rem;
   overflow-y: overlay;
@@ -94,14 +94,23 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #635671;
+  background: rgba(0, 0, 0, 0.5);
   margin-left: -3rem;
   height: 6rem;
-  z-index: 500;
+  z-index: 600;
 
   h2 {
     font-size: 2.2rem;
   }
+}
+
+.layer {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-left: -3rem;
+  height: 6rem;
+  z-index: 500;
 }
 
 #playlist-title {
@@ -114,16 +123,17 @@
 
 .songs_header {
   width: 91%;
+  height: 4rem;
+  padding-top: 1rem;
   position: fixed;
   top: 6rem;
-  background-color: #302a37;
-  z-index: 500;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 600;
 
   table {
     width: 94.8%;
     margin-left: 4rem;
     border-collapse: collapse;
-    background-color: #302a37;
 
     th {
       text-align: start;
@@ -154,6 +164,14 @@
       width: 10%;
     }
   }
+}
+
+.layer2 {
+  width: 91%;
+  position: fixed;
+  top: 6rem;
+  z-index: 500;
+  height: 4rem;
 }
 
 @media only screen and (max-width: 2000px) {
