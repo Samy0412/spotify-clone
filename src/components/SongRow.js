@@ -31,7 +31,8 @@ function SongRow({playSong, pause, spotify }) {
   //set up to see the number of the track when not hovering on it
   const onMouseLeave= (index)=> {
       setIcon((index+1));
-  }
+    }
+    
     
     return (
       <div>
