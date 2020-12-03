@@ -20,10 +20,14 @@
   a {
     padding: 2rem;
     border-radius: 9.9rem;
-    background-color: $green;
+    background-color: $greenfaded;
     font-weight: 800;
     color: white;
     font-size: 1.6rem;
     text-decoration: none;
+    transition: 200ms background-color ease-in;
+    &:hover {
+      background-color: $green;
+    }
   }
 }
