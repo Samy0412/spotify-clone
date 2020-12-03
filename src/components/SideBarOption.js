@@ -16,6 +16,7 @@ function SideBarOption({title, Icon, id, spotify}) {
   const [currentPlaylist, setCurrentPlaylist]=useState(null)
   const [mouseOver, setMouseOver]=useState(false)
 
+
   //get the current playing playlist id
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
