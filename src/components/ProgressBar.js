@@ -106,8 +106,17 @@ const stop = ()=> {
     if(progress >= item?.duration_ms){
       if(repeat){
         stop();
+        setProgress(0);
         __progress=0;
-        start();
+        setTimeout(()=> {
+          spotify.getMyCurrentPlaybackState().then((r)=> {
+            setCurrentTrack(r);
+            setProgress(r.progress_ms);
+            __progress= r.progress_ms;
+            start();
+          })
+        },2000)
+        
       }else {
         stop();
         setProgress(0);
