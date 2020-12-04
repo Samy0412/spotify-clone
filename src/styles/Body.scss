@@ -52,8 +52,10 @@
   font-size: 7rem !important;
   margin: 2rem 2rem 2rem 5rem;
   color: $green;
+
   &:hover {
     transition: 100ms transform ease-in;
+    -webkit-transform: scale(1.1);
     transform: scale(1.08);
   }
 }

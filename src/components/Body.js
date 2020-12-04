@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 //hooks for the scrolling animation
 import {useIntersection} from "react-use";
 import gsap from "gsap";
@@ -24,10 +24,10 @@ function Body({spotify}) {
 
   const [{ selected_playlist, playing }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
-  const [visible,setVisible]=useState(true)
+  const [playlistplaying, setPlaylistPlaying]=useState(null)
   
   //Data for react-palette
-  const {data,loading,error} = usePalette (selected_playlist?.images[0].url)
+  const {data} = usePalette (selected_playlist?.images[0].url)
 
 //Logic for the animation of the play/pause control when scrolling
   const sectionRef = useRef(null);
@@ -81,6 +81,7 @@ function Body({spotify}) {
   
 //Call to spotify API to play the selected playlist
   const playPlaylist = () => {
+    if(playlistplaying !== selected_playlist.id){
       spotify
       .play({
         context_uri: `spotify:playlist:${selected_playlist.id}`,
@@ -96,7 +97,15 @@ function Body({spotify}) {
             playing: true,
           });
         });
-      });  
+        setPlaylistPlaying(selected_playlist.id)
+      });
+    }else{
+      spotify.play();
+      dispatch({
+        type: "SET_PLAYING",
+        playing: true,
+      });
+    }
   };
 
   //call to Spotify API to play the selected song
@@ -136,9 +145,9 @@ function Body({spotify}) {
       
       <div className="sticky fadeIn">
       {!playing ? (
-          <PlayCircleFilledIcon className="body__shuffle small" onClick={playPlaylist}/>
+          <PlayCircleFilledIcon className="body__shuffle small" onClick={playPlaylist} />
         ): (
-          <PauseCircleFilledIcon className="body__shuffle small" onClick={pause}/>
+          <PauseCircleFilledIcon className="body__shuffle small" onClick={pause} />
         )}
         <h2 className="fadeIn" id="playlist-title">{selected_playlist?.name}</h2>
       </div>

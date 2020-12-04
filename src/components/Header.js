@@ -24,9 +24,11 @@ import {
 
 function Header() {
   const[{user}, dispatch]= useDataLayerValue();
-  const [dropdownOpen, setDropdownOpen] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
+  const toggle = () => {
+      setDropdownOpen(!dropdownOpen);
+    }
 
   return (
     <div className="header">
@@ -36,16 +38,16 @@ function Header() {
        type="text">
        </input>
       </div>
-    <div className="header__right">
+    <div className="header__right" >
       <Dropdown
-        isOpen={dropdownOpen}
-        toggle={toggle}
+        isOpen={!dropdownOpen}
+        onClick={toggle}
         >
         <DropdownToggle>
-          <div className="header__right__button">
+          <div className="header__right__button" >
           {user?.images[0]? (<Avatar className ="header__avatar"src={user?.images[0].url} alt={user?.display_name}/>):((<Avatar className ="header__avatar"src="" alt={user?.display_name}/>))}
           <h4>{user?.display_name}</h4>
-          {dropdownOpen ? (<ArrowDropDownIcon fontSize="large" className="arrow_icon"/>):(<ArrowDropUpIcon fontSize="large" className="arrow_icon"/>)}
+          {!dropdownOpen ? (<ArrowDropDownIcon fontSize="large" className="arrow_icon"/>):(<ArrowDropUpIcon fontSize="large" className="arrow_icon"/>)}
           </div>
         </DropdownToggle>
         <DropdownMenu right>
