@@ -146,3 +146,18 @@ th {
   color: white;
   margin-left: -0.6rem;
 }
+
+.animation-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 15px;
+  width: 13px;
+}
+
+.bar {
+  width: 19%;
+  height: 10%;
+  background-color: $greenfaded;
+}

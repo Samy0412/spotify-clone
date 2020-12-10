@@ -6,6 +6,7 @@ import styled from "styled-components"
 import "../styles/Footer.scss"
 
 
+
 const ProgressBarContainer = styled.div `
 display: flex;
 flex-direction: row;
@@ -16,14 +17,14 @@ const Track = styled.div`
   min-width: 25rem;
   height: 0.4rem;
   margin: 1.2rem 1rem 0 1rem;
-  background-color: gray;
+  background-color: rgba(128, 128, 128, 0.4);
   border-radius: 1rem;
   `;
 
 const Thumb = styled.div`
 width: ${props =>props.percentage}%;
 height: 0.4rem;
-background-color: lightgray;
+background-color: #acacac;
 border-radius: 1rem;
 transition: width 1s ease-in-out;
 `;  

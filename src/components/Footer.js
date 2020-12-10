@@ -146,7 +146,7 @@ function Footer({spotify}) {
      </div>
      <div className="footer__center">
        <div className="footer__commands">
-      <ShuffleIcon className={shuffle ? "footer__green icon" : "footer_white icon"} onClick={shufflePlaylist}/>
+      <ShuffleIcon className={shuffle ? "footer__green icon" : "footer__icon icon"} onClick={shufflePlaylist}/>
       <SkipPreviousIcon className="footer__icon icon" onClick={skipPrevious}/>
       {playing? (
         <PauseCircleOutlineIcon className="footer__icon __play icon" onClick={handlePlayPause}/>
@@ -155,14 +155,14 @@ function Footer({spotify}) {
       )}
     
       <SkipNextIcon className="footer__icon icon" onClick={skipNext}/>
-      <RepeatIcon className={repeat ? "footer__green icon" : "footer__white icon"} onClick={repeatTrack}/>
+      <RepeatIcon className={repeat ? "footer__green icon" : "footer__icon icon"} onClick={repeatTrack}/>
       </div>
       <ProgressBar spotify={spotify}/>
      </div>
      <div className="footer__right">
          <PlaylistPlayIcon className="footer__right__icon icon"/>
          <VolumeDownIcon className="footer__right__icon icon"/>
-         <Slider className="footer__right__icon"
+         <Slider 
          value={value} onChange={handleChange}/>
      </div>
     </div>

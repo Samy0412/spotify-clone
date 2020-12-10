@@ -6,6 +6,7 @@ export const initialState = {
   selected_playlist: null,
   repeat:false,
   spotify:null,
+  playing_playlist:null,
 }
 
 const reducer = (state, action) => {
@@ -47,6 +48,12 @@ switch(action.type) {
       ...state,
       selected_playlist: action.selected_playlist
     } 
+
+  case 'SET_PLAYING_PLAYLIST':
+    return {
+      ...state,
+      playing_playlist: action.playing_playlist
+    }
     case 'SET_REPEAT':
     return {
       ...state,

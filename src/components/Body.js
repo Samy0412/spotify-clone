@@ -22,7 +22,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 function Body({spotify}) {
 
-  const [{ selected_playlist, playing }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playing, playing_playlist }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
   const [playlistplaying, setPlaylistPlaying]=useState(null)
   
@@ -81,7 +81,7 @@ function Body({spotify}) {
   
 //Call to spotify API to play the selected playlist
   const playPlaylist = () => {
-    if(playlistplaying !== selected_playlist.id){
+    if(playing_playlist !== selected_playlist.id){
       spotify
       .play({
         context_uri: `spotify:playlist:${selected_playlist.id}`,
@@ -97,7 +97,11 @@ function Body({spotify}) {
             playing: true,
           });
         });
-        setPlaylistPlaying(selected_playlist.id)
+        dispatch({
+          type: "SET_PLAYING_PLAYLIST",
+          playing_playlist: selected_playlist.id,
+        });
+        // setPlaylistPlaying()
       });
     }else{
       spotify.play();

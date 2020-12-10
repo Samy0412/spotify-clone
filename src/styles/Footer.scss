@@ -76,9 +76,6 @@
   .footer__green {
     color: $green;
   }
-  .footer__white {
-    color: white;
-  }
 
   .__play {
     font-size: 4.5rem;
@@ -98,7 +95,43 @@
   max-width: 30rem;
 
   *.MuiSlider-root {
-    color: $green;
+    color: $green !important;
+    margin-left: 1.5rem;
+    pointer-events: auto;
+
+    &:hover {
+      .MuiSlider-thumb {
+        display: inline;
+        color: white !important;
+        box-shadow: inherit !important;
+        width: 15px;
+        height: 15px;
+      }
+      .MuiSlider-track {
+        color: $green !important;
+      }
+    }
+    &:active {
+      .MuiSlider-thumb {
+        display: inline;
+        color: white !important;
+        box-shadow: inherit !important;
+      }
+    }
+  }
+  .MuiSlider-thumb {
+    display: none;
+  }
+
+  .MuiSlider-track {
+    color: $grey2 !important;
+    height: 4px !important;
+    border-radius: 2.5px !important;
+  }
+  .MuiSlider-rail {
+    color: rgba(128, 128, 128, 0.9);
+    height: 4px !important;
+    border-radius: 2.5px !important;
   }
 
   .icon {
@@ -112,7 +145,7 @@
   }
 
   .footer__right__icon {
-    margin-left: 1.5rem;
+    margin-left: 1rem;
   }
 }
 
