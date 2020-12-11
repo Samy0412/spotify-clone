@@ -83,7 +83,7 @@ const stop = ()=> {
     
 }, [playing]); 
 
-  //handle the pogress of the song when changing song
+  //handle the progress of the song when changing song
   useEffect(() => {
     spotify.getMyCurrentPlayingTrack().then((r) => {
       setCurrentTrack(r);

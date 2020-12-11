@@ -50,7 +50,7 @@ function Header() {
           {!dropdownOpen ? (<ArrowDropDownIcon fontSize="large" className="arrow_icon"/>):(<ArrowDropUpIcon fontSize="large" className="arrow_icon"/>)}
           </div>
         </DropdownToggle>
-        <DropdownMenu right>
+        <DropdownMenu >
           <a href="/">
             <DropdownItem className="button-layout">
               <h4> Sign out</h4>

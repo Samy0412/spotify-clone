@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js"
 import { useDataLayerValue }  from './DataLayer'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //helper function
 import { getTokenFromUrl } from "./spotify";

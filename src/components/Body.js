@@ -101,7 +101,6 @@ function Body({spotify}) {
           type: "SET_PLAYING_PLAYLIST",
           playing_playlist: selected_playlist.id,
         });
-        // setPlaylistPlaying()
       });
     }else{
       spotify.play();
@@ -116,7 +115,8 @@ function Body({spotify}) {
   const playSong = (id) => {
     spotify
       .play({
-        uris: [`spotify:track:${id}`],
+        context_uri: `spotify:playlist:${selected_playlist.id}`,
+        offset: {uri:`spotify:track:${id}`},
       })
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
@@ -128,6 +128,10 @@ function Body({spotify}) {
             type: "SET_PLAYING",
             playing: true,
           });
+        });
+        dispatch({
+          type: "SET_PLAYING_PLAYLIST",
+          playing_playlist: selected_playlist.id,
         });
       });
   };
