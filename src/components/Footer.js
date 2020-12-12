@@ -175,8 +175,10 @@ function Footer({spotify}) {
          <VolumeDownOutlinedIcon className="footer__right__icon icon"/>}
          {value > 60 &&
          <VolumeUpOutlinedIcon className="footer__right__icon icon"/>}
+     
          <Slider 
-         value={value} onChange={handleChange}/>
+         value={value} onChange={handleChange} id="slider" />
+    
      </div>
     </div>
   )
