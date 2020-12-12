@@ -91,8 +91,8 @@ tl4.to(".four", {height:"10%", duration:0.3,ease:"sine.out"});
         
         <tr className={selected === _index ? "songRowSelected" : "songRow"}   onMouseOver={()=>onMouseOver(_index,_item.track.id)} onMouseLeave={()=>onMouseLeave()}> 
           
+        
           {firstField(_item,_index)}
-          
        <td className={item?.id === _item.track.id && playing && _index !== index ? "numero" : "invisible"}>
           <div className="animation-container">
             <div className="bar one"></div>
