@@ -34,6 +34,9 @@
   width: 50vw;
   height: fit-content;
   border-radius: 1.6rem;
+  button {
+    outline: none !important;
+  }
   button > span {
     font-size: 3rem;
   }

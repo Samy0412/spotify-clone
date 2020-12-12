@@ -7,11 +7,17 @@ export const initialState = {
   repeat:false,
   spotify:null,
   playing_playlist:null,
+  locale:"en",
 }
 
 const reducer = (state, action) => {
 
 switch(action.type) {
+  case 'SET_LOCALE':
+    return {
+      ...state,
+      locale:action.locale
+    }
   case 'SET_USER':
     return {
       ...state,

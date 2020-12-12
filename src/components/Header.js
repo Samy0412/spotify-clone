@@ -5,64 +5,73 @@ import {useDataLayerValue} from "./DataLayer"
 //Style sheet
 import "../styles/Header.scss"
 
-//material Ui icons
+//material UI components
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
+
+//material UI icons
 import SearchIcon from "@material-ui/icons/Search"
 import {Avatar} from "@material-ui/core"
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 
-//ReactStrap
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
-
-
 
 function Header() {
-  const[{user}, dispatch]= useDataLayerValue();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const[{user, locale}, dispatch]= useDataLayerValue();
+  
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const toggle = () => {
-      setDropdownOpen(!dropdownOpen);
+  const handleClick = (event) => {
+    if (!anchorEl){
+      setAnchorEl(event.currentTarget);
+    }else {
+      setAnchorEl(null);
     }
+  };
 
   return (
     <div className="header">
       <div className="header__left">
       <SearchIcon fontSize="large"/>
-      <input placeholder="Search"
+      <input placeholder={locale === "fr" ? "Rechercher" : "Search"}
        type="text">
        </input>
       </div>
     <div className="header__right" >
-      <Dropdown
-        isOpen={!dropdownOpen}
-        onClick={toggle}
-        >
-        <DropdownToggle>
-          <div className="header__right__button" >
+    <Button
+        aria-controls="simple-menu" 
+        aria-haspopup="true"
+        onClick={handleClick}
+        disableElevation
+        disableRipple
+        disableFocusRipple
+        variant="text"
+      >
+        <div className="header__right__button" >
           {user?.images[0]? (<Avatar className ="header__avatar"src={user?.images[0].url} alt={user?.display_name}/>):((<Avatar className ="header__avatar"src="" alt={user?.display_name}/>))}
           <h4>{user?.display_name}</h4>
-          {!dropdownOpen ? (<ArrowDropDownIcon fontSize="large" className="arrow_icon"/>):(<ArrowDropUpIcon fontSize="large" className="arrow_icon"/>)}
-          </div>
-        </DropdownToggle>
-        <DropdownMenu >
-          <a href="/">
-            <DropdownItem className="button-layout">
-              <h4> Sign out</h4>
-            </DropdownItem>
-          </a>
-        </DropdownMenu>
-      </Dropdown>
+          {!anchorEl ? (<ArrowDropDownIcon fontSize="large" className="arrow_icon"/>):(<ArrowDropUpIcon fontSize="large" className="arrow_icon"/>)}
+        </div>
+      </Button> 
+    <Menu
+      id="simple-menu"
+      TransitionComponent={Fade}
+      anchorEl={anchorEl}
+      keepMounted
+      open={anchorEl}
+      >
+      <MenuItem 
+      disableRipple>
+      <a href="/">
+      <h4> Sign out</h4>
+      </a>
+      </MenuItem>
+      </Menu>
       </div>
        
-    
-
-      
     </div>
   )
 }

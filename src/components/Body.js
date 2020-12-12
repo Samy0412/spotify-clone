@@ -22,7 +22,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 function Body({spotify}) {
 
-  const [{ selected_playlist, playing, playing_playlist }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playing, playing_playlist, locale }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
   const [playlistplaying, setPlaylistPlaying]=useState(null)
   
@@ -168,7 +168,7 @@ function Body({spotify}) {
           <h2>{selected_playlist?.name}</h2>
           <p ref={sectionRef}>{selected_playlist?.description}</p>
           <br></br>
-          <p><strong>{selected_playlist?.owner.display_name}</strong> . {selected_playlist?.followers.total} like{(selected_playlist?.followers.total)>1 ? "s" : ""} . {selected_playlist?.tracks.total} songs, {durationString}</p>
+          <p><strong>{selected_playlist?.owner.display_name}</strong> . {selected_playlist?.followers.total} like{(selected_playlist?.followers.total)>1 ? "s" : ""} . {selected_playlist?.tracks.total} {locale === "fr"? "titres" :"songs"}, {durationString}</p>
         </div>
       </div>
       <div className="body__songs" >
@@ -187,10 +187,10 @@ function Body({spotify}) {
         <table>
       <tr className="table__header fadeIn">
          <th>#</th>
-         <th>TITLE</th>
+         <th>{locale === "fr"? "TITRE" : "TITLE"}</th>
          <th>ALBUM</th>
-         <th>ADDED AT</th>
-         <th>DURATION</th>
+         <th>{locale === "fr"? "AJOUTÉ LE" : "ADDED AT"}</th>
+         <th>{locale === "fr"? "DURÉE" : "DURATION"}</th>
        </tr>
        </table>
       </div>

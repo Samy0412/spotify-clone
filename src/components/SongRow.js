@@ -12,9 +12,9 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 
 
-function SongRow({playSong, pause, spotify }) {
+function SongRow({playSong, pause }) {
 
-  const [{ selected_playlist, playing, item }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playing, item,locale }, dispatch]=useDataLayerValue()
   const [icon, setIcon]=useState(null)
   const [index, setIndex]=useState(null);
   const [selected, setSelected]= useState(null);
@@ -41,7 +41,7 @@ tl3.to(".two", {height:"65%", duration:0.3,ease:"sine.out" });
 tl3.to(".two", {height:"100%", duration:0.3,ease:"sine.out"});
 tl3.to(".two", {height:"10%", duration:0.3,ease:"sine.out"});
 
-const tl4 = gsap.timeline({repeat: -1, delay:0.8});
+const tl4 = gsap.timeline({repeat: -1, delay:0.6});
 
 tl4.to(".four", {height:"65%", duration:0.3,ease:"sine.out"});
 tl4.to(".four", {height:"100%", duration:0.3,ease:"sine.out"});
@@ -61,7 +61,7 @@ tl4.to(".four", {height:"10%", duration:0.3,ease:"sine.out"});
  
   //set up to see the number of the track when not hovering on it
   const onMouseLeave= ()=> {
-       setIndex(null);
+      setIndex(null);
     }
     
     const firstField = (_item,_index)=> {
@@ -69,16 +69,9 @@ tl4.to(".four", {height:"10%", duration:0.3,ease:"sine.out"});
       let firstField;
       if(item?.id === _item.track.id && playing && _index === index){
         firstField = <td className="numero">{icon} </td>
-      }else if (item?.id === _item.track.id && playing){
-        firstField = (<td className="numero">
-          <div class="animation-container">
-            <div class="bar one"></div>
-            <div class="bar two"></div>
-            <div class="bar three"></div>
-            <div class="bar four"></div>
-          </div>
-          </td>)
-      }else {
+      }else if (playing && item?.id === _item.track.id ){
+        firstField = null;
+      }else{
         firstField = <td className={item?.id === _item.track.id ? "numero green" : "numero"}><h3>{_index === index ? icon : (_index+1)}</h3></td>
       }
       return firstField;
@@ -88,10 +81,10 @@ tl4.to(".four", {height:"10%", duration:0.3,ease:"sine.out"});
        <table>
        <tr className="table__header">
          <th>#</th>
-         <th>TITLE</th>
+         <th>{locale === "fr"? "TITRE" : "TITLE"}</th>
          <th>ALBUM</th>
-         <th>ADDED AT</th>
-         <th>DURATION</th>
+         <th>{locale === "fr"? "AJOUTÉ LE" : "ADDED AT"}</th>
+         <th>{locale === "fr"? "DURÉE" : "DURATION"}</th>
        </tr>
        <tr className="empty__row"></tr>
       {selected_playlist?.tracks.items.map((_item,_index)=> (
@@ -99,6 +92,15 @@ tl4.to(".four", {height:"10%", duration:0.3,ease:"sine.out"});
         <tr className={selected === _index ? "songRowSelected" : "songRow"}   onMouseOver={()=>onMouseOver(_index,_item.track.id)} onMouseLeave={()=>onMouseLeave()}> 
           
           {firstField(_item,_index)}
+          
+       <td className={item?.id === _item.track.id && playing && _index !== index ? "numero" : "invisible"}>
+          <div className="animation-container">
+            <div className="bar one"></div>
+            <div className="bar two"></div>
+            <div className="bar three"></div>
+            <div className="bar four"></div>
+          </div>
+        </td>
           
         <td className="songRow__container" onClick={()=>setSelected(_index)}>
           <img className="songRow__picture" src={_item.track.album.images[0].url} alt={_item.track.album.name}/>

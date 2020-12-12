@@ -105,7 +105,7 @@ th {
 
 .songRow__picture {
   height: 4rem;
-  width: 4rem;
+  min-width: 4rem;
 }
 
 .songRow__album {
@@ -160,4 +160,8 @@ th {
   width: 19%;
   height: 10%;
   background-color: $greenfaded;
+}
+
+.invisible {
+  display: none;
 }

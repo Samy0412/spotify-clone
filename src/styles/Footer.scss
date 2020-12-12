@@ -9,7 +9,7 @@
   height: 10rem;
   width: 100%;
   background-color: $grey1;
-  padding: 0rem 2rem;
+  padding: 0.5rem 2rem;
   border-top: 0.1rem solid black;
 }
 
@@ -52,6 +52,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 .footer__commands {
   flex: 0.7;

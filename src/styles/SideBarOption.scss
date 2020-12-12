@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   color: $grey2;
-  height: 4rem;
+  min-height: 4rem;
   cursor: pointer;
   transition: 200ms color ease-in;
   position: relative;

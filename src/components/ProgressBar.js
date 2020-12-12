@@ -145,11 +145,13 @@ const stop = ()=> {
 
   return (
     <ProgressBarContainer>
-      <p className="time">{(Math.floor((progress/1000)/60))}:{(Math.floor((progress/1000)%60))>=10 ? (Math.floor((progress/1000)%60)): `0${(Math.floor((progress/1000)%60))}`}</p>
+      {progress? <p className="time">{(Math.floor((progress/1000)/60))}:{(Math.floor((progress/1000)%60))>=10 ? (Math.floor((progress/1000)%60)): `0${(Math.floor((progress/1000)%60))}`}</p>
+        : ""}
       <Track>
         <Thumb percentage={__percentage}></Thumb>
       </Track>
-      <p className="time">{(Math.floor((item?.duration_ms/1000)/60))}:{(Math.floor((item?.duration_ms/1000)%60))>=10 ? (Math.floor((item?.duration_ms/1000)%60)): `0${(Math.floor((item?.duration_ms/1000)%60))}`}</p>
+      {item? <p className="time">{(Math.floor((item?.duration_ms/1000)/60))}:{(Math.floor((item?.duration_ms/1000)%60))>=10 ? (Math.floor((item?.duration_ms/1000)%60)): `0${(Math.floor((item?.duration_ms/1000)%60))}`}</p>
+        : ""}
     </ProgressBarContainer>
   )
 }

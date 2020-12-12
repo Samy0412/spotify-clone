@@ -12,7 +12,13 @@ import SkipNextIcon from "@material-ui/icons/SkipNext"
 import ShuffleIcon from "@material-ui/icons/Shuffle"
 import RepeatIcon from "@material-ui/icons/Repeat"
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay"
-import VolumeDownIcon from "@material-ui/icons/VolumeDown"
+import VolumeOffOutlinedIcon from '@material-ui/icons/VolumeOffOutlined';
+import VolumeMuteOutlinedIcon from '@material-ui/icons/VolumeMuteOutlined';
+import VolumeDownOutlinedIcon from '@material-ui/icons/VolumeDownOutlined';
+import VolumeUpOutlinedIcon from '@material-ui/icons/VolumeUpOutlined';
+import Popover from '@material-ui/core/Popover';
+
+
 import { Slider} from "@material-ui/core"
 
 //core components
@@ -23,7 +29,7 @@ function Footer({spotify}) {
 
   const [{ token, item, playing, repeat }, dispatch] = useDataLayerValue();
   const [value, setValue] = useState(50);
-  const [shuffle, setShuffle]=useState(false)
+  const [shuffle, setShuffle]=useState(false);
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
@@ -161,7 +167,14 @@ function Footer({spotify}) {
      </div>
      <div className="footer__right">
          <PlaylistPlayIcon className="footer__right__icon icon"/>
-         <VolumeDownIcon className="footer__right__icon icon"/>
+         {value === 0 &&
+         <VolumeOffOutlinedIcon className="footer__right__icon icon"/>}
+         {value > 0 && value <=20 &&
+         <VolumeMuteOutlinedIcon className="footer__right__icon icon"/>}
+         {value > 20 && value <=60 &&
+         <VolumeDownOutlinedIcon className="footer__right__icon icon"/>}
+         {value > 60 &&
+         <VolumeUpOutlinedIcon className="footer__right__icon icon"/>}
          <Slider 
          value={value} onChange={handleChange}/>
      </div>
