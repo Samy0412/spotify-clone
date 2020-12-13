@@ -9,4 +9,4 @@
   publish = "build/"
 
   # Default build command.
-  command = "CI=' ' npm run build"
+  command = "CI=false npm run build"
