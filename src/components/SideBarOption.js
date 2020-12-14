@@ -63,7 +63,7 @@ function SideBarOption({title, Icon, id, spotify}) {
   return (
     <div className="sidebaroption"> 
      {Icon && <Icon className="sidebaroption__icon"/>}
-     {Icon ? (<h4>{title}</h4>) : (<div className="playlist-name"><p className={id === selected_playlist?.id ? "white": ""} onClick={()=>setPlaylist(id)}>{title}</p>{!mouseOver ? (<VolumeUpIcon onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} className={currentPlaylist === id && playing ? "visible": "invisible"}/>):(<PauseCircleOutlineIcon className="sidebar__icon__pause icon" onClick={handlePlayPause} onMouseLeave={onMouseLeave}/>)}</div>)}  
+     {Icon ? (<h4 >{title}</h4>) : (<div className="playlist-name"><p className={id === selected_playlist?.id ? "white": ""} onClick={()=>setPlaylist(id)}>{title}</p>{!mouseOver ? (<VolumeUpIcon onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} className={currentPlaylist === id && playing ? "visible": "invisible"}/>):(<PauseCircleOutlineIcon className="sidebar__icon__pause icon" onClick={handlePlayPause} onMouseLeave={onMouseLeave}/>)}</div>)}  
     </div>
   )
 }

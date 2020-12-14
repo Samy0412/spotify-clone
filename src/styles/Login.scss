@@ -16,16 +16,22 @@
   }
 
   a {
-    padding: 2rem;
-    border-radius: 9.9rem;
+    padding: 1.8rem 6rem;
+    border-radius: 6rem;
+    letter-spacing: 1.5px;
+    margin-top: 2rem;
     background-color: $greenfaded;
-    font-weight: 800;
+    font-weight: 700;
     color: white;
     font-size: 1.6rem;
     text-decoration: none;
+    border: none;
+    float: right;
     transition: 200ms background-color ease-in;
     &:hover {
       background-color: $green;
+      transition: transform 0.2s ease-in-out;
+      transform: scale(1.04) !important;
     }
   }
 }
@@ -33,13 +39,18 @@
 .alert {
   width: 50vw;
   height: fit-content;
-  border-radius: 1.6rem;
+  border-radius: 1rem;
+
   button {
     outline: none !important;
   }
   button > span {
     font-size: 3rem;
   }
+}
+.alert-warning {
+  background-color: transparent !important;
+  color: red !important;
 }
 
 .alert-container {
@@ -50,9 +61,30 @@
 
   .alert-text {
     padding: 2rem;
+    color: black;
     header > h2 {
       font-size: 3.5rem;
       text-align: center;
+    }
+    button {
+      padding: 1.3rem 7rem;
+      border-radius: 6rem;
+      letter-spacing: 1px;
+      margin-top: 2rem;
+      width: 35%;
+      margin-left: 32.5%;
+      background-color: $greenfaded;
+      font-weight: 700;
+      color: white;
+      font-size: 1.4rem;
+      text-decoration: none;
+      border: none;
+      transition: 200ms background-color ease-in;
+      &:hover {
+        background-color: $green;
+        transition: transform 0.2s ease-in-out;
+        transform: scale(1.04) !important;
+      }
     }
   }
 
@@ -68,12 +100,13 @@
   .section-two {
     margin-top: 2rem;
     padding: 1rem;
-    border: 2px solid rgb(197, 89, 89);
+    border: 1.6px solid rgb(221, 30, 30);
     border-radius: 1rem;
     h4 {
       font-size: 2rem;
+      font-weight: 500;
       margin-bottom: 2rem;
-      color: rgb(197, 89, 89);
+      color: rgb(221, 30, 30);
     }
     div {
       display: flex;
@@ -83,7 +116,7 @@
       font-size: 3.5rem;
       margin-right: 2rem;
       margin-top: -0.4rem;
-      color: rgb(197, 89, 89);
+      color: rgb(221, 30, 30);
     }
     ol {
       margin-left: 5rem;
@@ -91,12 +124,12 @@
     ol > li,
     strong {
       font-size: 1.6rem;
-      color: rgb(197, 89, 89);
+      color: rgb(221, 30, 30);
     }
     p {
       font-size: 1.5rem;
       font-weight: 600;
-      color: rgb(197, 89, 89);
+      color: black;
       margin-top: 2rem;
     }
   }

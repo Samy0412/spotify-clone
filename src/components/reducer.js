@@ -8,6 +8,8 @@ export const initialState = {
   spotify:null,
   playing_playlist:null,
   locale:"en",
+  active_device:true,
+  device_id:null,
 }
 
 const reducer = (state, action) => {
@@ -64,6 +66,16 @@ switch(action.type) {
       ...state,
       repeat: action.repeat
     }  
+    case 'SET_ACTIVE_DEVICE':
+    return {
+      ...state,
+      active_device: action.active_device
+    } 
+    case 'SET_DEVICE_ID':
+    return {
+      ...state,
+      device_id: action.device_id
+    } 
    default: 
    return state; 
 }

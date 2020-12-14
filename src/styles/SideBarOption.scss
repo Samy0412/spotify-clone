@@ -4,18 +4,20 @@
   display: flex;
   align-items: center;
   color: $grey2;
-  min-height: 4rem;
+  min-height: 3.8rem;
   cursor: pointer;
-  transition: 200ms color ease-in;
+  transition: 100ms color ease-in;
   position: relative;
   &:hover {
     color: white;
   }
   h4 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+    font-weight: 500;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+    font-weight: 400;
     margin: 1rem 0 0 2rem;
   }
   .sidebaroption__icon {

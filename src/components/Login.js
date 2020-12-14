@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../styles/Login.scss";
 import { loginUrl } from "./spotify"
 import { useDataLayerValue } from './DataLayer'
 
 //reactStrap
-import { UncontrolledAlert } from 'reactstrap';
+import { Alert } from 'reactstrap';
 
 //material-ui icons
 import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
@@ -33,6 +33,10 @@ function Login() {
 
   const [{ locale }, dispatch] = useDataLayerValue();
 
+  const [visible, setVisible] = useState(true);
+
+  const onDismiss = () => setVisible(false);
+
   useEffect(()=>{
     let _locale = getBrowserLocales({languageCodeOnly:true})[0];
     dispatch({
@@ -51,11 +55,11 @@ function Login() {
       <a href={loginUrl}>LOGIN WITH SPOTIFY</a>
       }
       <div className="alert-container">
-      <UncontrolledAlert color="warning" className="alert">
+      <Alert color="light" isOpen={visible} className="alert">
        {locale === "fr" ? 
        <div className="alert-text">
          <header><h2>Bienvenue sur Spotify-clone !</h2></header>
-         <section className="section-one"><p>Spotify-clone est une copie d'une partie de l'interface utilisateur de l'application web de Spotify avec ses animations.<br></br> Les fonctionalités disponibles sont :</p> 
+         <section className="section-one"><p>Spotify-clone est une copie d'une partie de l'interface utilisateur de l'application web de Spotify avec ses animations.<br></br> Les fonctionnalités disponibles sont :</p> 
          <ul>
            <li>- Lire vos playlists et les chansons qu'elles contiennent</li>
            <li>- Pause/Play</li>
@@ -75,9 +79,10 @@ function Login() {
              <li><strong>3.</strong>  Lire dans cette même aplication une chanson pour quelque secondes et l'arrêter.</li> 
              <li><strong>4.</strong>  Vous pouvez maintenant fermer cette fenêtre et vous connecter à Spotify-clone.</li> 
           </ol> 
-          <p><strong>NOTE: </strong>L'application originale de Spotify (web, bureau, mobile) se désactive après quelques minutes d'inactivité. Si Spotify-Clone ne fonctionne pas, veuillez répéter l'étape 3 et rafraichissez la page de Spotify-Clone. </p>
+          {/* <p><strong>NOTE: </strong>L'application originale de Spotify (web, bureau, mobile) se désactive après quelques minutes d'inactivité. Si Spotify-Clone ne fonctionne pas, veuillez répéter l'étape 3 et rafraichissez la page de Spotify-Clone. </p> */}
            </section>
-       </div>
+           <button onClick={onDismiss} >J'AI COMPRIS</button>
+         </div>
       : 
       <div className="alert-text">
          <header><h2>Welcome to Spotify-clone !</h2></header>
@@ -101,10 +106,11 @@ function Login() {
              <li><strong>3.</strong> Play in the real Spotify app a song for a couple of seconds, and then pause it. </li> 
              <li><strong>4.</strong> You can now close this window and login to Spotify-Clone.</li> 
           </ol> 
-          <p><strong>NOTE: </strong>The real Spotify application (web, desktop, mobile) will be disabled after a few minutes of inactivity. If Spotify-Clone doesn't work, please repeat step 3 and refresh the Spotify-Clone page. </p>
+          {/* <p><strong>NOTE: </strong>The real Spotify application (web, desktop, mobile) will be disabled after a few minutes of inactivity. If Spotify-Clone doesn't work, please repeat step 3 and refresh the Spotify-Clone page. </p> */}
            </section>
+           <button onClick={onDismiss} >I UNDERSTAND</button>
        </div>}
-     </UncontrolledAlert>
+     </Alert>
      </div>
     </div>
    

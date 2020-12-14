@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import axios from "axios";
 //hooks for the scrolling animation
 import {useIntersection} from "react-use";
 import gsap from "gsap";
@@ -22,12 +23,11 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 function Body({spotify}) {
 
-  const [{ selected_playlist, playing, playing_playlist, locale }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playing, playing_playlist, locale, device_id, token }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
-  const [playlistplaying, setPlaylistPlaying]=useState(null)
   
   //Data for react-palette
-  const {data} = usePalette (selected_playlist?.images[0].url)
+  const {data} = usePalette (selected_playlist?.images[0]?.url)
 
 //Logic for the animation of the play/pause control when scrolling
   const sectionRef = useRef(null);
@@ -82,11 +82,20 @@ function Body({spotify}) {
 //Call to spotify API to play the selected playlist
   const playPlaylist = () => {
     if(playing_playlist !== selected_playlist.id){
-      spotify
-      .play({
-        context_uri: `spotify:playlist:${selected_playlist.id}`,
-      })
-      .then((res) => {
+      // spotify
+      // .play({
+      //   context_uri: `spotify:playlist:${selected_playlist.id}`,
+      // })
+      axios({url: `https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,
+             method: 'PUT',
+             headers: {
+               'Content-Type': 'application/json',
+               'Authorization':`Bearer ${token}`,
+             },
+             data:{
+              context_uri: `spotify:playlist:${selected_playlist.id}`,
+             }
+            }).then((res) => {
         spotify.getMyCurrentPlaybackState().then((r) => {
           dispatch({
             type: "SET_ITEM",
@@ -162,7 +171,7 @@ function Body({spotify}) {
       <div className="layer fadeIn"  style={{backgroundColor:data.lightVibrant}}></div>
        
       <div className="body__info">
-        <img className="image" src={selected_playlist?.images[0].url} alt=""/>
+        <img className="image" src={selected_playlist?.images[0]?.url} alt=""/>
         <div className="body__infoText">
           <strong>PLAYLIST</strong>
           <h2>{selected_playlist?.name}</h2>
@@ -195,6 +204,7 @@ function Body({spotify}) {
        </table>
       </div>
       <div className="layer2 fadeIn"  style={{backgroundColor:data.lightVibrant}}></div>
+      <div className="layer3 fadeIn"></div>
         </div>
       </div>
     </div>

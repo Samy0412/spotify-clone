@@ -17,7 +17,7 @@ const spotify = new SpotifyWebApi()
 
 function App() {
 
-  const [{ token, tracks, playlists }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
 
   //Run code at first render
   useEffect(()=> {
@@ -46,8 +46,7 @@ function App() {
       })
     }
       //get the user Playlists
-    spotify.getUserPlaylists({limit:35}).then((playlists)=> {
-      console.log("playlists:",playlists)
+    spotify.getUserPlaylists({limit:20}).then((playlists)=> {
       dispatch({
         type:'SET_PLAYLISTS',
         playlists: playlists,
@@ -61,8 +60,6 @@ function App() {
         })
       })
     })
-
-//  spotify.getMyDevices().then((response)=> console.log("devices:",response))
 
   },[])
   
