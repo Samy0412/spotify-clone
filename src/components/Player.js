@@ -40,17 +40,26 @@ function Player({spotify}) {
   
   const getAvailableDevices = ()=> {
     let _device_id = null;
+    let _active_device = false;
     spotify.getMyDevices().then((response)=> {
-      console.log("devices:",response)
       const devices = response.devices;
-      if(devices.length > 0){
-          _device_id=devices[0].id;
-        }else {
+          devices?.forEach(device => {
+            if (device.is_active) {
+              _active_device = true;
+              _device_id = device.id;
+            }
+          })
+        
+        if(!_active_device || devices.length === 0){
           setVisible(true)
         }
        dispatch ({
         type:'SET_DEVICE_ID',
         device_id: _device_id,
+      })
+      dispatch ({
+        type:'SET_ACTIVE_DEVICE',
+        active_device: _active_device,
       })
     })
   }
@@ -77,13 +86,15 @@ function Player({spotify}) {
         <div id="alert-text">
           <div id="alert-title">
           <ReportProblemOutlinedIcon className="warning-icon"/>
-          <h4>Oups! Aucun appareil n'est détecté!</h4>
+          <h4>Oups! Aucun appareil actif n'est détecté!</h4>
           </div>
           <div>
           <ol>
-             <li><strong>1.</strong>  Ouvrez soit l'application originale web de Spotify dans un autre onglet, soit l'application bureau ou mobile.</li>
-             <br></br>
-             <li><strong>2.</strong>  Rafraichissez ensuite la page de Spotify-Clone.</li> 
+            <li>Suivez ces étapes:</li>
+            <br></br>
+             <li><strong>1.</strong> Ouvrez soit le player web de Spotify, soit l'application bureau ou mobile.</li>
+             <li><strong>2.</strong> Jouer une chanson pour quelques secondes et arrêter.</li>
+             <li><strong>3.</strong> Rafraichissez la page de Spotify-Clone.</li> 
           </ol> 
           
           </div>
@@ -97,12 +108,14 @@ function Player({spotify}) {
       <div id="alert-text">
         <div id="alert-title">
           <ReportProblemOutlinedIcon className="warning-icon"/>
-          <h4>Oops! No device is detected!</h4>
+          <h4>Oops! there are no active device detected!</h4>
         </div>
         <div>
         <ol>
+          <li>Please follow these steps:</li>
+          <br></br>
            <li><strong>1.</strong> Open the real Spotify app, either the web player, the desktop or the mobile app. </li>
-           <br></br>
+           <li><strong>2.</strong> Play a song for a few seconds and stop it.</li>
            <li><strong>2.</strong> Refresh the Spotify-Clone page.</li> 
          </ol> 
          </div>

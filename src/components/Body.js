@@ -23,7 +23,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 function Body({spotify, setVisible}) {
 
-  const [{ selected_playlist, playing, playing_playlist, locale, device_id, token }, dispatch]=useDataLayerValue()
+  const [{ selected_playlist, playing, playing_playlist, locale, device_id, token, active_device }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
   
   //Data for react-palette
@@ -82,7 +82,7 @@ function Body({spotify, setVisible}) {
 //Call to spotify API to play the selected playlist
   const playPlaylist = () => {
       
-    if(device_id){
+    if(device_id && active_device){
       if(playing_playlist !== selected_playlist.id){
      
         axios({url: `https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,
@@ -96,11 +96,11 @@ function Body({spotify, setVisible}) {
         }
        }).then(() => {
           spotify.getMyCurrentPlaybackState().then((r) => {
+            console.log("r:",r)
             dispatch({
               type: "SET_ITEM",
               item: r.item,
             });
-            console.log("item:",r.item)
             dispatch({
               type: "SET_PLAYING",
               playing: true,
@@ -126,7 +126,7 @@ function Body({spotify, setVisible}) {
 
   //call to Spotify API to play the selected song
   const playSong = (id) => {
-    if(device_id){
+    if(device_id && active_device){
       axios({url: `https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,
         method: 'PUT',
         headers: {

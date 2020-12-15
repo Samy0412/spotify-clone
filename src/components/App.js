@@ -61,6 +61,20 @@ function App() {
       })
     })
 
+     //get the current status of playback
+     spotify.getMyCurrentPlaybackState().then((r) => {
+
+      dispatch({
+        type: "SET_PLAYING",
+        playing: r.is_playing,
+      });
+
+      dispatch({
+        type: "SET_ITEM",
+        item: r.item,
+      });
+    });
+
   },[])
   
 
