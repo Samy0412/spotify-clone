@@ -93,7 +93,7 @@ function Player({spotify}) {
             <li>Suivez ces étapes:</li>
             <br></br>
              <li><strong>1.</strong> Ouvrez soit le player web de Spotify, soit l'application bureau ou mobile.</li>
-             <li><strong>2.</strong> Jouer une chanson pour quelques secondes et arrêter.</li>
+             <li><strong>2.</strong> Jouez une chanson pour quelques secondes et arrêter.</li>
              <li><strong>3.</strong> Rafraichissez la page de Spotify-Clone.</li> 
           </ol> 
           
