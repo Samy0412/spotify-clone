@@ -41,19 +41,20 @@
 }
 .visible {
   background-color: black;
-  height: 2rem !important;
-  width: 2rem !important;
-  // border: 1px solid red;
+  padding: 0.4rem;
+  height: 3rem !important;
+  width: 3rem !important;
   position: absolute;
-  right: 1rem;
+  top: 0.8rem;
+  right: 0rem;
 }
 
 .sidebar__icon__pause {
   background-color: black;
-  height: 3.5rem !important;
-  width: 3.5rem !important;
+  height: 3rem !important;
+  width: 3rem !important;
   position: absolute;
-  right: 0.3rem;
-  top: 0.7rem;
+  right: 0rem;
+  top: 0.8rem;
   color: $grey2;
 }

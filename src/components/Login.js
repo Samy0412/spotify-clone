@@ -50,13 +50,13 @@ function Login() {
     <div className="login">
       <img src="/Spotify_Logo_RGB_White.png" alt="spotify-logo"/>
       {locale === "fr" ?
-      <a href={loginUrl}>SE CONNECTER AVEC SPOTIFY</a>
+      <a href={loginUrl} id="button-anchor">SE CONNECTER AVEC SPOTIFY</a>
       :
-      <a href={loginUrl}>LOGIN WITH SPOTIFY</a>
+      <a href={loginUrl} id="button-anchor">LOGIN WITH SPOTIFY</a>
       }
       <div className="alert-container">
       <Alert color="light" isOpen={visible} className="alert">
-       {locale === "fr" ? 
+       {locale === "en" ? 
        <div className="alert-text">
          <header><h2>Bienvenue sur Spotify-clone !</h2></header>
          <section className="section-one"><p>Spotify-clone est une copie d'une partie de l'interface utilisateur de l'application web de Spotify avec ses animations.<br></br> Les fonctionnalités disponibles sont :</p> 
@@ -71,15 +71,12 @@ function Login() {
          <section className="section-two">
            <div>
            <ReportProblemOutlinedIcon className="warning-icon"/>
-           <h4>Pour que Spotify-clone fonctionne, vous devez obligatoirement suivre ces étapes :</h4>
+           <h4>Pour que Spotify-clone fonctionne, vous devez :</h4>
            </div>
            <ol>
              <li><strong>1.</strong> Avoir un compte Spotify ainsi que quelques playlists.</li>
-             <li><strong>2.</strong>  Ouvrir soit l'application originale web de Spotify dans un autre onglet, soit l'application bureau ou mobile.</li>
-             <li><strong>3.</strong>  Lire dans cette même aplication une chanson pour quelque secondes et l'arrêter.</li> 
-             <li><strong>4.</strong>  Vous pouvez maintenant fermer cette fenêtre et vous connecter à Spotify-clone.</li> 
+             <li><strong>2.</strong>  Ouvrir soit le lecteur web de Spotify dans un autre onglet (<a href="https://www.spotify.com/" target="_blank">Accéder au lecteur web ICI</a>), soit l'application bureau.</li>
           </ol> 
-          {/* <p><strong>NOTE: </strong>L'application originale de Spotify (web, bureau, mobile) se désactive après quelques minutes d'inactivité. Si Spotify-Clone ne fonctionne pas, veuillez répéter l'étape 3 et rafraichissez la page de Spotify-Clone. </p> */}
            </section>
            <button onClick={onDismiss} >J'AI COMPRIS</button>
          </div>
@@ -98,15 +95,12 @@ function Login() {
          <section className="section-two">
            <div>
            <ReportProblemOutlinedIcon className="warning-icon"/>
-           <h4>For Spotify-clone to work, you must follow these steps:</h4>
+           <h4>For Spotify-clone to work, you must:</h4>
            </div>
            <ol>
              <li><strong>1.</strong> Have a Spotify account and some playlists.</li>
-             <li><strong>2.</strong> Open the real Spotify app, either the web player, the desktop or the mobile app. </li>
-             <li><strong>3.</strong> Play in the real Spotify app a song for a couple of seconds, and then pause it. </li> 
-             <li><strong>4.</strong> You can now close this window and login to Spotify-Clone.</li> 
+             <li><strong>2.</strong> Open the real Spotify app, either the web player(<a href="https://www.spotify.com/" target="_blank">Go to web player HERE</a>) or the desktop app.  </li>
           </ol> 
-          {/* <p><strong>NOTE: </strong>The real Spotify application (web, desktop, mobile) will be disabled after a few minutes of inactivity. If Spotify-Clone doesn't work, please repeat step 3 and refresh the Spotify-Clone page. </p> */}
            </section>
            <button onClick={onDismiss} >I UNDERSTAND</button>
        </div>}

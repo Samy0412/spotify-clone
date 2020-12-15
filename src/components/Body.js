@@ -21,7 +21,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 
-function Body({spotify}) {
+function Body({spotify, setVisible}) {
 
   const [{ selected_playlist, playing, playing_playlist, locale, device_id, token }, dispatch]=useDataLayerValue()
   const [selected,setSelected]= useState(false);
@@ -81,53 +81,63 @@ function Body({spotify}) {
   
 //Call to spotify API to play the selected playlist
   const playPlaylist = () => {
-    if(playing_playlist !== selected_playlist.id){
-      // spotify
-      // .play({
-      //   context_uri: `spotify:playlist:${selected_playlist.id}`,
-      // })
-      axios({url: `https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,
-             method: 'PUT',
-             headers: {
-               'Content-Type': 'application/json',
-               'Authorization':`Bearer ${token}`,
-             },
-             data:{
-              context_uri: `spotify:playlist:${selected_playlist.id}`,
-             }
-            }).then((res) => {
-        spotify.getMyCurrentPlaybackState().then((r) => {
-          dispatch({
-            type: "SET_ITEM",
-            item: r.item,
+      
+    if(device_id){
+      if(playing_playlist !== selected_playlist.id){
+     
+        axios({url: `https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization':`Bearer ${token}`,
+        },
+        data:{
+         context_uri: `spotify:playlist:${selected_playlist.id}`,
+        }
+       }).then(() => {
+          spotify.getMyCurrentPlaybackState().then((r) => {
+            dispatch({
+              type: "SET_ITEM",
+              item: r.item,
+            });
+            console.log("item:",r.item)
+            dispatch({
+              type: "SET_PLAYING",
+              playing: true,
+            });
           });
           dispatch({
-            type: "SET_PLAYING",
-            playing: true,
+            type: "SET_PLAYING_PLAYLIST",
+            playing_playlist: selected_playlist.id,
           });
-        });
-        dispatch({
-          type: "SET_PLAYING_PLAYLIST",
-          playing_playlist: selected_playlist.id,
-        });
-      });
-    }else{
-      spotify.play();
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
+          });
+      }else{
+            spotify.play();
+            dispatch({
+              type: "SET_PLAYING",
+              playing: true,
+            });
+      }
+    }else {
+      setVisible(true);
     }
   };
+  
 
   //call to Spotify API to play the selected song
   const playSong = (id) => {
-    spotify
-      .play({
-        context_uri: `spotify:playlist:${selected_playlist.id}`,
-        offset: {uri:`spotify:track:${id}`},
-      })
-      .then((res) => {
+    if(device_id){
+      axios({url: `https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization':`Bearer ${token}`,
+        },
+        data:{
+         context_uri: `spotify:playlist:${selected_playlist.id}`,
+         offset: {uri:`spotify:track:${id}`},
+        }
+       }).then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
           dispatch({
             type: "SET_ITEM",
@@ -143,6 +153,9 @@ function Body({spotify}) {
           playing_playlist: selected_playlist.id,
         });
       });
+    }else {
+      setVisible(true);
+    }
   };
 
   const pause = ()=>{
