@@ -22,41 +22,26 @@ function SongRow({playSong, pause }) {
 
 //Logic for the animation bars when song is playing
 
-const tl = gsap.timeline({repeat: -1, paused:true});
+function doAnimation(element){
+  const tl = gsap.timeline({repeat: -1, delay:0.2});
 
-tl.to(".one", {height:"65%", duration:0.3,ease:"sine.out" });
-tl.to(".one", {height:"100%", duration:0.3,ease:"sine.out" });
-tl.to(".one", {height:"10%", duration:0.3,ease:"sine.out" });
+tl.to(element, {height:"65%", duration:0.3,ease:"sine.out" });
+tl.to(element, {height:"100%", duration:0.3,ease:"sine.out"});
+tl.to(element, {height:"10%", duration:0.3,ease:"sine.out"});
+  
+  return tl;
+}
 
-
-const tl2 = gsap.timeline({repeat: -1, delay:0.2,paused:true});
-
-tl2.to(".three", {height:"65%", duration:0.3,ease:"sine.out"});
-tl2.to(".three", {height:"100%", duration:0.3,ease:"sine.out"});
-tl2.to(".three", {height:"10%", duration:0.3,ease:"sine.out"});
-
-const tl3 = gsap.timeline({repeat: -1, delay:0.4,paused:true});
-
-tl3.to(".two", {height:"65%", duration:0.3,ease:"sine.out" });
-tl3.to(".two", {height:"100%", duration:0.3,ease:"sine.out"});
-tl3.to(".two", {height:"10%", duration:0.3,ease:"sine.out"});
-
-const tl4 = gsap.timeline({repeat: -1, delay:0.6,paused:true});
-
-tl4.to(".four", {height:"65%", duration:0.3,ease:"sine.out"});
-tl4.to(".four", {height:"100%", duration:0.3,ease:"sine.out"});
-tl4.to(".four", {height:"10%", duration:0.3,ease:"sine.out"});
+const master = gsap.timeline();
+master.add(doAnimation(".one"))
+.add(doAnimation(".three"))
+.add(doAnimation(".two"))
+.add(doAnimation(".four"));
 
 if(playing){
-  tl.play();
-  tl2.play();
-  tl3.play();
-  tl4.play();
+ master.play();
 }else {
-  tl.pause();
-  tl2.pause();
-  tl3.pause();
-  tl4.pause();
+  master.pause();
 }
 
 ///////////////////////////////
